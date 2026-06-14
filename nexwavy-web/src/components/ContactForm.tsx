@@ -49,11 +49,11 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div className="bento p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 text-xl text-accent">
+        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-line bg-cloud text-xl text-blue">
           ✓
         </div>
-        <h3 className="mt-4 text-xl font-bold text-ink">Your message has been received.</h3>
-        <p className="mt-2 text-muted">
+        <h3 className="mt-4 text-xl font-semibold text-midnight">Your message has been received.</h3>
+        <p className="mt-2 text-slate">
           Thank you for contacting Nexwavy Solutions Ltd. Our team will review your request and follow up shortly.
         </p>
         <button className="btn-ghost mt-6" onClick={() => setStatus("idle")}>
@@ -85,14 +85,14 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="phone">
-            Phone <span className="font-normal text-muted/70">(optional)</span>
+            Phone <span className="font-normal text-slate/70">(optional)</span>
           </label>
           <input id="phone" name="phone" className="field-input" autoComplete="tel" />
           {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
         </div>
         <div>
           <label className="field-label" htmlFor="organization">
-            Company / organization <span className="font-normal text-muted/70">(optional)</span>
+            Company / organization <span className="font-normal text-slate/70">(optional)</span>
           </label>
           <input id="organization" name="organization" className="field-input" autoComplete="organization" />
         </div>
@@ -114,7 +114,7 @@ export default function ContactForm() {
 
       <div>
         <label className="field-label" htmlFor="message">
-          Message / business need <span className="font-normal text-muted/70">(optional)</span>
+          Message / business need <span className="font-normal text-slate/70">(optional)</span>
         </label>
         <textarea
           id="message"
@@ -128,7 +128,7 @@ export default function ContactForm() {
 
       {serverError && <p className="text-sm text-red-600">{serverError}</p>}
 
-      <button type="submit" className="btn-primary justify-self-start" disabled={status === "submitting"}>
+      <button type="submit" className="btn-primary justify-self-start self-start" disabled={status === "submitting"}>
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>
     </form>

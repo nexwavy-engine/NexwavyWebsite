@@ -30,9 +30,9 @@ export default function RegisterPage({
           <aside className="grid content-start gap-4">
             {COURSES.map((c) => (
               <div key={c.id} className="bento p-6">
-                <p className="text-sm font-semibold text-ink">{c.title}</p>
-                <p className="mt-1 text-xl font-bold text-accent">{formatNgn(c.priceNgn)}</p>
-                <p className="mt-2 text-sm text-ink/70">{c.summary}</p>
+                <p className="text-sm font-semibold text-midnight">{c.title}</p>
+                <p className="mt-1 text-xl font-semibold text-blue">{formatNgn(c.priceNgn)}</p>
+                <p className="mt-2 text-sm text-slate">{c.summary}</p>
               </div>
             ))}
           </aside>

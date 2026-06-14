@@ -22,10 +22,12 @@ export function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <p className="chip mb-3">{eyebrow}</p>}
-      <h2 className="text-3xl font-bold tracking-tight text-ink md:text-4xl">{title}</h2>
-      {intro && <p className="mt-4 text-lg leading-relaxed text-muted">{intro}</p>}
+    <div className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
+      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+      <h2 className="text-balance text-3xl font-semibold tracking-[-0.04em] text-midnight md:text-[3rem] md:leading-[1.04]">
+        {title}
+      </h2>
+      {intro && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate">{intro}</p>}
     </div>
   );
 }
@@ -41,10 +43,12 @@ export function PageHeader({
 }) {
   return (
     <header className="container-page pt-16 md:pt-20">
-      <div className="max-w-3xl">
-        {eyebrow && <p className="chip mb-4">{eyebrow}</p>}
-        <h1 className="text-4xl font-bold tracking-tight text-ink md:text-5xl">{title}</h1>
-        {intro && <p className="mt-5 text-lg leading-relaxed text-muted">{intro}</p>}
+      <div className="max-w-4xl">
+        {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+        <h1 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-midnight md:text-6xl md:leading-[1.02]">
+          {title}
+        </h1>
+        {intro && <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate md:text-xl">{intro}</p>}
       </div>
     </header>
   );
@@ -59,13 +63,16 @@ export function CtaBand({
 }) {
   return (
     <Section>
-      <div className="bento overflow-hidden bg-gradient-to-br from-tide/70 via-night-2/90 to-night p-10 text-white md:p-14">
-        <div className="grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
+      <div className="soft-band overflow-hidden p-8 md:p-12">
+        <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h2>
-            <p className="mt-3 max-w-xl text-muted">{body}</p>
+            <p className="eyebrow mb-4">Start a conversation</p>
+            <h2 className="text-balance text-3xl font-semibold tracking-[-0.04em] text-midnight md:text-5xl md:leading-[1.04]">
+              {title}
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate">{body}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+          <div className="grid gap-4">
             <Link href="/contact" className="btn-primary">
               Book a Discovery Session
             </Link>

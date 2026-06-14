@@ -18,7 +18,7 @@ export default function SampleSolutionsPage() {
       />
 
       <Section className="pt-8">
-        <div className="bento p-7 text-sm leading-relaxed text-muted">
+        <div className="soft-band p-7 text-sm leading-relaxed text-slate">
           As we complete our first pilot engagements, this section will be updated with verified client outcomes, testimonials, and before/after process improvements.
         </div>
       </Section>
@@ -28,18 +28,18 @@ export default function SampleSolutionsPage() {
           {SAMPLE_SOLUTIONS.map((solution) => (
             <article key={solution.title} className="bento p-8">
               <p className="chip self-start">{solution.sector}</p>
-              <h2 className="mt-4 text-xl font-bold text-ink">{solution.title}</h2>
+              <h2 className="mt-4 text-xl font-semibold text-midnight">{solution.title}</h2>
               <dl className="mt-5 grid gap-4 text-sm">
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Problem</dt>
-                  <dd className="mt-2 text-muted">{solution.problem}</dd>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-blue">Problem</dt>
+                  <dd className="mt-2 text-slate">{solution.problem}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Solution</dt>
-                  <dd className="mt-2 text-muted">{solution.solution}</dd>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-blue">Solution</dt>
+                  <dd className="mt-2 text-slate">{solution.solution}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Key features</dt>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-blue">Key features</dt>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {solution.features.map((feature) => (
                       <span key={feature} className="chip">
@@ -49,8 +49,8 @@ export default function SampleSolutionsPage() {
                   </div>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Outcome</dt>
-                  <dd className="mt-2 font-medium text-ink">{solution.outcome}</dd>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-blue">Outcome</dt>
+                  <dd className="mt-2 font-medium text-midnight">{solution.outcome}</dd>
                 </div>
               </dl>
             </article>
@@ -59,11 +59,11 @@ export default function SampleSolutionsPage() {
       </Section>
 
       <Section>
-        <div className="bento bg-gradient-to-br from-tide/70 via-night-2/90 to-night p-10 text-center md:p-14">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-3xl">
+        <div className="soft-band p-10 text-center md:p-14">
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] text-midnight md:text-3xl">
             Have a process that looks like one of these?
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted">
+          <p className="mx-auto mt-3 max-w-2xl text-slate">
             Let's review it and identify whether it should be improved, automated, or rebuilt into a cleaner digital workflow.
           </p>
           <Link href="/contact" className="btn-primary mt-7">

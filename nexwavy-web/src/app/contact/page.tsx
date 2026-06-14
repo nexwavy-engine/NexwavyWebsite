@@ -23,48 +23,48 @@ export default function ContactPage() {
 
           <aside className="grid content-start gap-5">
             <div className="bento p-7">
-              <h2 className="text-lg font-semibold text-ink">Contact options</h2>
+              <h2 className="text-lg font-semibold text-midnight">Contact options</h2>
               <div className="mt-4 grid gap-3 text-sm">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="font-semibold text-ink">Book a Discovery Session</p>
-                  <p className="mt-1 text-muted">For businesses that need clarity on what to automate or improve first.</p>
+                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
+                  <p className="font-semibold text-midnight">Book a Discovery Session</p>
+                  <p className="mt-1 text-slate">For businesses that need clarity on what to automate or improve first.</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="font-semibold text-ink">Request AI Training</p>
-                  <p className="mt-1 text-muted">For teams, schools, SMEs, and organizations that want practical AI productivity training.</p>
+                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
+                  <p className="font-semibold text-midnight">Request AI Training</p>
+                  <p className="mt-1 text-slate">For teams, schools, SMEs, and organizations that want practical AI productivity training.</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="font-semibold text-ink">Discuss Automation</p>
-                  <p className="mt-1 text-muted">For businesses ready to replace manual tracking with a better system.</p>
+                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
+                  <p className="font-semibold text-midnight">Discuss Automation</p>
+                  <p className="mt-1 text-slate">For businesses ready to replace manual tracking with a better system.</p>
                 </div>
               </div>
             </div>
 
             <div className="bento p-7">
-              <h2 className="text-lg font-semibold text-ink">Reach us directly</h2>
+              <h2 className="text-lg font-semibold text-midnight">Reach us directly</h2>
               <dl className="mt-4 grid gap-3 text-sm">
                 <div>
-                  <dt className="text-muted">Email</dt>
+                  <dt className="text-slate">Email</dt>
                   <dd>
-                    <a className="font-medium text-ink hover:text-accent" href={`mailto:${SITE.email}`}>
+                    <a className="font-medium text-midnight hover:text-blue" href={`mailto:${SITE.email}`}>
                       {SITE.email}
                     </a>
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-muted">Phone</dt>
-                  <dd className="font-medium text-ink">{SITE.phone}</dd>
+                  <dt className="text-slate">Phone</dt>
+                  <dd className="font-medium text-midnight">{SITE.phone}</dd>
                 </div>
                 <div>
-                  <dt className="text-muted">Location</dt>
-                  <dd className="font-medium text-ink">{SITE.location}</dd>
+                  <dt className="text-slate">Location</dt>
+                  <dd className="font-medium text-midnight">{SITE.location}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="bento bg-gradient-to-br from-tide/70 via-night-2/90 to-night p-7 text-white">
-              <h2 className="text-lg font-semibold">Looking for training?</h2>
-              <p className="mt-2 text-sm text-muted">
+            <div className="soft-band p-7">
+              <h2 className="text-lg font-semibold text-midnight">Looking for training?</h2>
+              <p className="mt-2 text-sm text-slate">
                 If you're here for the AI Productivity Masterclass, you can register directly and we'll follow up with confirmation and payment guidance.
               </p>
               <a href="/register" className="btn-primary mt-5">

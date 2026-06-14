@@ -72,11 +72,11 @@ export default function RegisterForm({
   if (status === "success" && result) {
     return (
       <div className="bento p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 text-xl text-accent">
+        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-line bg-cloud text-xl text-blue">
           ✓
         </div>
-        <h3 className="mt-4 text-xl font-bold text-ink">Seat reserved.</h3>
-        <p className="mt-2 text-muted">
+        <h3 className="mt-4 text-xl font-semibold text-midnight">Seat reserved.</h3>
+        <p className="mt-2 text-slate">
           You're registered for <strong>{result.courseTitle}</strong>. Complete payment to confirm
           your place — we've also emailed you the link.
         </p>
@@ -84,7 +84,7 @@ export default function RegisterForm({
           Complete payment
         </a>
         {result.emailMocked && (
-          <p className="mt-4 text-xs text-muted/70">
+          <p className="mt-4 text-xs text-slate/70">
             (Dev mode: confirmation email logged to the server console, not sent.)
           </p>
         )}
@@ -141,7 +141,7 @@ export default function RegisterForm({
         </div>
         <div>
           <label className="field-label" htmlFor="organization">
-            Organization <span className="font-normal text-muted/70">(optional)</span>
+            Organization <span className="font-normal text-slate/70">(optional)</span>
           </label>
           <input id="organization" name="organization" className="field-input" autoComplete="organization" />
         </div>
@@ -150,7 +150,7 @@ export default function RegisterForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="cohortId">
-            Cohort <span className="font-normal text-muted/70">(optional)</span>
+            Cohort <span className="font-normal text-slate/70">(optional)</span>
           </label>
           <select id="cohortId" name="cohortId" className="field-input" defaultValue="">
             <option value="">No preference</option>
@@ -188,7 +188,7 @@ export default function RegisterForm({
       <button type="submit" className="btn-primary justify-self-start" disabled={status === "submitting"}>
         {status === "submitting" ? "Reserving…" : "Reserve my seat"}
       </button>
-      <p className="text-xs text-muted/80">
+      <p className="text-xs text-slate/80">
         Reserving holds your place. Your seat is confirmed once payment is complete.
       </p>
     </form>

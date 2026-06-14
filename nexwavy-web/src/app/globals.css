@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -11,14 +11,11 @@ html {
 }
 
 body {
-  @apply bg-night text-ink antialiased;
-  position: relative;
+  @apply bg-cloud font-sans text-ink antialiased;
   min-height: 100vh;
   background-image:
-    radial-gradient(60rem 60rem at 110% -10%, rgba(37, 214, 232, 0.12), transparent 58%),
-    radial-gradient(42rem 42rem at -8% 4%, rgba(0, 61, 79, 0.34), transparent 56%),
-    linear-gradient(180deg, #061a1f 0%, #071b2c 56%, #061a1f 100%);
-  background-attachment: fixed;
+    radial-gradient(circle at top left, rgba(191, 232, 230, 0.5), transparent 24rem),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 36%, #f5f7fb 100%);
 }
 
 body::before {
@@ -26,48 +23,96 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 80%);
-  opacity: 0.35;
   pointer-events: none;
+  background:
+    linear-gradient(rgba(217, 225, 234, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 225, 234, 0.2) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 70%);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-midnight font-display;
+  }
 }
 
 @layer components {
+  .surface {
+    @apply rounded-xl2 border border-line bg-white shadow-soft;
+  }
+
   .glass {
-    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-soft;
+    @apply surface;
   }
+
   .bento {
-    @apply rounded-xl2 border border-white/10 bg-white/5 shadow-soft transition-all duration-200;
+    @apply surface transition-all duration-200;
   }
+
   .bento:hover {
-    @apply border-white/15 shadow-lift;
+    @apply -translate-y-0.5 shadow-lift;
   }
+
   .btn {
-    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors;
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200;
   }
+
   .btn-primary {
-    @apply btn bg-gold text-night hover:bg-gold-deep;
+    @apply btn bg-blue text-white hover:bg-midnight;
   }
+
   .btn-accent {
-    @apply btn bg-accent text-night hover:brightness-95;
+    @apply btn bg-midnight text-white hover:bg-blue;
   }
+
   .btn-ghost {
-    @apply btn border border-white/15 bg-white/5 text-ink hover:bg-white/10;
+    @apply btn border border-line bg-white text-midnight hover:border-blue hover:text-blue;
   }
+
+  .btn-link {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-blue transition-colors hover:text-midnight;
+  }
+
   .field-label {
-    @apply mb-1.5 block text-sm font-medium text-muted;
+    @apply mb-1.5 block text-sm font-medium text-midnight;
   }
+
   .field-input {
-    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-ink
-      placeholder:text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20;
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink
+      placeholder:text-slate focus:border-blue focus:outline-none focus:ring-2 focus:ring-blue/15;
   }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-blue;
+  }
+
   .chip {
-    @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-accent;
+    @apply inline-flex items-center rounded-full border border-blue/10 bg-blue/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue;
   }
+
   .container-page {
     @apply mx-auto w-full max-w-6xl px-5;
+  }
+
+  .section-rule {
+    @apply h-px w-full bg-line;
+  }
+
+  .soft-band {
+    @apply rounded-[2rem] border border-line bg-white/75 shadow-soft;
+  }
+
+  .n-fragment {
+    clip-path: polygon(0 12%, 100% 0, 100% 88%, 0 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

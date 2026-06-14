@@ -29,7 +29,7 @@ export default function LoginForm() {
       )}
 
       {hasGoogle && hasDev && (
-        <div className="flex items-center gap-3 text-xs text-muted/70">
+        <div className="flex items-center gap-3 text-xs text-slate/70">
           <span className="h-px flex-1 bg-white/10" />
           or
           <span className="h-px flex-1 bg-white/10" />
@@ -44,7 +44,7 @@ export default function LoginForm() {
           }}
           className="grid gap-4"
         >
-          <p className="text-sm text-muted">
+          <p className="text-sm text-slate">
             Developer sign-in (no OAuth keys configured). Use any email to preview the dashboard.
           </p>
           <div>
@@ -62,7 +62,7 @@ export default function LoginForm() {
           </div>
           <div>
             <label className="field-label" htmlFor="dev-name">
-              Name <span className="font-normal text-muted/70">(optional)</span>
+              Name <span className="font-normal text-slate/70">(optional)</span>
             </label>
             <input
               id="dev-name"
@@ -78,7 +78,7 @@ export default function LoginForm() {
       )}
 
       {!hasGoogle && !hasDev && (
-        <p className="text-sm text-muted">No sign-in providers are configured.</p>
+        <p className="text-sm text-slate">No sign-in providers are configured.</p>
       )}
     </div>
   );
