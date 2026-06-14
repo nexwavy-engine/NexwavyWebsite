@@ -1,64 +1,144 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { NAV } from "@/lib/content/site";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/90 bg-white/90 backdrop-blur">
-      <nav className="container-page flex h-20 items-center justify-between gap-8">
-        <Link href="/" className="shrink-0">
+    <header
+      className={`sticky top-0 z-40 border-b transition-all duration-300 ${
+        scrolled
+          ? "border-line/80 bg-white/95 shadow-nav backdrop-blur-md"
+          : "border-transparent bg-white/90 backdrop-blur"
+      }`}
+    >
+      {/* Skip to main content for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-blue focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to main content
+      </a>
+
+      <nav
+        className="container-page flex h-[4.5rem] items-center justify-between gap-6"
+        aria-label="Main navigation"
+      >
+        <Link href="/" className="shrink-0 focus-visible:rounded-lg" aria-label="Nexwavy Solutions home">
           <BrandLogo />
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-slate transition-colors hover:text-midnight"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
-        <div className="hidden lg:block">
-          <Link href="/contact" className="btn-primary">
-            Book a Discovery Session
-          </Link>
-        </div>
-
-        <button
-          className="rounded-full border border-line px-4 py-2 text-sm font-semibold text-midnight lg:hidden"
-          onClick={() => setOpen((value) => !value)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          Menu
-        </button>
-      </nav>
-
-      {open && (
-        <div className="border-t border-line bg-white lg:hidden">
-          <div className="container-page flex flex-col gap-3 py-4">
-            {NAV.map((item) => (
+        {/* Desktop nav links */}
+        <div className="hidden items-center gap-1 lg:flex" role="list">
+          {NAV.filter((item) => item.href !== "/").map((item) => {
+            const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="py-2 text-sm font-medium text-slate"
-                onClick={() => setOpen(false)}
+                role="listitem"
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-blue/8 text-blue"
+                    : "text-slate hover:bg-cloud hover:text-midnight"
+                }`}
+                aria-current={isActive ? "page" : undefined}
               >
                 {item.label}
               </Link>
-            ))}
-            <Link href="/contact" className="btn-primary mt-2" onClick={() => setOpen(false)}>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="hidden lg:block">
+            <Link href="/contact" className="btn-primary">
               Book a Discovery Session
             </Link>
+          </div>
+
+          {/* Mobile menu toggle */}
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-blue hover:text-blue lg:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+          >
+            <span className="sr-only">{open ? "Close" : "Menu"}</span>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              aria-hidden="true"
+              className="transition-transform"
+            >
+              {open ? (
+                <>
+                  <line x1="2" y1="2" x2="16" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="16" y1="2" x2="2" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </>
+              ) : (
+                <>
+                  <line x1="2" y1="5" x2="16" y2="5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="2" y1="9" x2="16" y2="9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="2" y1="13" x2="16" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div
+          id="mobile-nav"
+          className="border-t border-line bg-white lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+        >
+          <div className="container-page flex flex-col gap-1 py-4 pb-6">
+            {NAV.map((item) => {
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${
+                    isActive ? "bg-blue/8 text-blue" : "text-slate hover:bg-cloud hover:text-midnight"
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <div className="mt-3 border-t border-line pt-3">
+              <Link href="/contact" className="btn-primary w-full">
+                Book a Discovery Session
+              </Link>
+            </div>
           </div>
         </div>
       )}

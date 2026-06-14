@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import type { Course, Cohort } from "@/lib/types";
 
 const FORMATS = [
-  { value: "online", label: "Online (live)" },
+  { value: "online", label: "Online (live virtual)" },
   { value: "in-person", label: "In-person" },
   { value: "hybrid", label: "Hybrid / in-house" },
 ];
@@ -71,20 +71,26 @@ export default function RegisterForm({
 
   if (status === "success" && result) {
     return (
-      <div className="bento p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-line bg-cloud text-xl text-blue">
-          ✓
+      <div className="bento flex flex-col items-center p-10 text-center md:p-14">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full border border-line bg-cloud">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3069B0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
         </div>
-        <h3 className="mt-4 text-xl font-semibold text-midnight">Seat reserved.</h3>
-        <p className="mt-2 text-slate">
-          You're registered for <strong>{result.courseTitle}</strong>. Complete payment to confirm
-          your place — we've also emailed you the link.
+        <h3 className="mt-5 text-xl font-semibold text-midnight">Seat reserved.</h3>
+        <p className="mt-2 max-w-md text-slate">
+          You&apos;re registered for <strong className="text-midnight">{result.courseTitle}</strong>. Complete payment to confirm your place — we&apos;ve also emailed you the link.
         </p>
-        <a href={result.paymentUrl} target="_blank" rel="noopener noreferrer" className="btn-accent mt-6">
+        <a
+          href={result.paymentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent mt-8"
+        >
           Complete payment
         </a>
         {result.emailMocked && (
-          <p className="mt-4 text-xs text-slate/70">
+          <p className="mt-4 text-xs text-slate/60">
             (Dev mode: confirmation email logged to the server console, not sent.)
           </p>
         )}
@@ -93,10 +99,11 @@ export default function RegisterForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="bento grid gap-5 p-8" noValidate>
+    <form onSubmit={onSubmit} className="bento grid gap-5 p-8" noValidate aria-label="Registration form">
+      {/* Track selection */}
       <div>
         <label className="field-label" htmlFor="courseId">
-          Choose a track
+          Choose a training track <span className="text-error" aria-hidden="true">*</span>
         </label>
         <select
           id="courseId"
@@ -104,6 +111,8 @@ export default function RegisterForm({
           className="field-input"
           value={courseId}
           onChange={(e) => setCourseId(e.target.value)}
+          required
+          aria-required="true"
         >
           {courses.map((c) => (
             <option key={c.id} value={c.id}>
@@ -111,46 +120,85 @@ export default function RegisterForm({
             </option>
           ))}
         </select>
-        {errors.courseId && <p className="mt-1 text-sm text-red-600">{errors.courseId}</p>}
+        {errors.courseId && (
+          <p className="mt-1.5 text-xs text-error" role="alert">{errors.courseId}</p>
+        )}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="fullName">
-            Full name
+            Full name <span className="text-error" aria-hidden="true">*</span>
           </label>
-          <input id="fullName" name="fullName" className="field-input" autoComplete="name" required />
-          {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
+          <input
+            id="fullName"
+            name="fullName"
+            className={`field-input ${errors.fullName ? "border-error" : ""}`}
+            autoComplete="name"
+            required
+            aria-required="true"
+          />
+          {errors.fullName && (
+            <p className="mt-1.5 text-xs text-error" role="alert">{errors.fullName}</p>
+          )}
         </div>
         <div>
           <label className="field-label" htmlFor="email">
-            Email
+            Email address <span className="text-error" aria-hidden="true">*</span>
           </label>
-          <input id="email" name="email" type="email" className="field-input" autoComplete="email" required />
-          {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+          <input
+            id="email"
+            name="email"
+            type="email"
+            className={`field-input ${errors.email ? "border-error" : ""}`}
+            autoComplete="email"
+            required
+            aria-required="true"
+          />
+          {errors.email && (
+            <p className="mt-1.5 text-xs text-error" role="alert">{errors.email}</p>
+          )}
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="phone">
-            Phone
+            Phone number <span className="text-error" aria-hidden="true">*</span>
           </label>
-          <input id="phone" name="phone" className="field-input" autoComplete="tel" required />
-          {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            className={`field-input ${errors.phone ? "border-error" : ""}`}
+            autoComplete="tel"
+            placeholder="+234 800 000 0000"
+            required
+            aria-required="true"
+          />
+          {errors.phone && (
+            <p className="mt-1.5 text-xs text-error" role="alert">{errors.phone}</p>
+          )}
         </div>
         <div>
           <label className="field-label" htmlFor="organization">
-            Organization <span className="font-normal text-slate/70">(optional)</span>
+            Organization{" "}
+            <span className="font-normal text-slate/60">(optional)</span>
           </label>
-          <input id="organization" name="organization" className="field-input" autoComplete="organization" />
+          <input
+            id="organization"
+            name="organization"
+            className="field-input"
+            autoComplete="organization"
+          />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="cohortId">
-            Cohort <span className="font-normal text-slate/70">(optional)</span>
+            Cohort preference{" "}
+            <span className="font-normal text-slate/60">(optional)</span>
           </label>
           <select id="cohortId" name="cohortId" className="field-input" defaultValue="">
             <option value="">No preference</option>
@@ -161,16 +209,23 @@ export default function RegisterForm({
                   month: "long",
                   year: "numeric",
                 })}{" "}
-                · {c.deliveryFormat}
+                &middot; {c.deliveryFormat}
               </option>
             ))}
           </select>
         </div>
         <div>
           <label className="field-label" htmlFor="preferredFormat">
-            Preferred format
+            Preferred format <span className="text-error" aria-hidden="true">*</span>
           </label>
-          <select id="preferredFormat" name="preferredFormat" className="field-input" defaultValue="online">
+          <select
+            id="preferredFormat"
+            name="preferredFormat"
+            className="field-input"
+            defaultValue="online"
+            required
+            aria-required="true"
+          >
             {FORMATS.map((f) => (
               <option key={f.value} value={f.value}>
                 {f.label}
@@ -178,18 +233,39 @@ export default function RegisterForm({
             ))}
           </select>
           {errors.preferredFormat && (
-            <p className="mt-1 text-sm text-red-600">{errors.preferredFormat}</p>
+            <p className="mt-1.5 text-xs text-error" role="alert">{errors.preferredFormat}</p>
           )}
         </div>
       </div>
 
-      {serverError && <p className="text-sm text-red-600">{serverError}</p>}
+      {serverError && (
+        <div className="rounded-2xl border border-error/30 bg-error/5 px-4 py-3" role="alert">
+          <p className="text-sm text-error">{serverError}</p>
+        </div>
+      )}
 
-      <button type="submit" className="btn-primary justify-self-start" disabled={status === "submitting"}>
-        {status === "submitting" ? "Reserving…" : "Reserve my seat"}
-      </button>
-      <p className="text-xs text-slate/80">
-        Reserving holds your place. Your seat is confirmed once payment is complete.
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <button
+          type="submit"
+          className="btn-primary"
+          disabled={status === "submitting"}
+          aria-busy={status === "submitting"}
+        >
+          {status === "submitting" ? (
+            <span className="flex items-center gap-2">
+              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Reserving your seat…
+            </span>
+          ) : (
+            "Reserve my seat"
+          )}
+        </button>
+      </div>
+      <p className="text-xs leading-relaxed text-slate/70">
+        Reserving holds your place. Your seat is confirmed once payment is complete. <span aria-hidden="true">*</span> Required fields.
       </p>
     </form>
   );

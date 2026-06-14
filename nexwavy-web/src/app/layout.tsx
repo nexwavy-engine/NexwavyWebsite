@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
@@ -21,25 +21,53 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.company} — Business automation and AI productivity partner`,
-    template: `%s — ${SITE.shortName}`,
+    default: `${SITE.company} — Business Automation & AI Productivity`,
+    template: `%s | ${SITE.shortName}`,
   },
   description: SITE.tagline,
   metadataBase: new URL("https://nexwavy.com"),
+  keywords: [
+    "business automation Nigeria",
+    "AI training Lagos",
+    "IT advisory Nigeria",
+    "digital transformation SME",
+    "workflow automation",
+    "AI productivity masterclass",
+  ],
   openGraph: {
-    title: SITE.company,
+    title: `${SITE.company} — Business Automation & AI Productivity`,
     description: SITE.tagline,
     type: "website",
+    locale: "en_NG",
+    url: "https://nexwavy.com",
+    siteName: SITE.company,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.company,
+    description: SITE.tagline,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B1F3B",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} bg-cloud`}>
       <body>
         <Providers>
           <Nav />
-          <main className="min-h-[60vh]">{children}</main>
+          <main id="main-content" className="min-h-[60vh]">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>
