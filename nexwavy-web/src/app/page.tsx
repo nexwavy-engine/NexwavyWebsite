@@ -42,10 +42,10 @@ export default function HomePage() {
     <>
       {/* 1 ── Hero ───────────────────────────────────────── */}
       <section className="w-full bg-midnight">
-        <div className="container-page grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+        <div className="container-page grid min-h-[calc(100vh-4rem)] grid-cols-1 items-stretch gap-12 py-20 lg:grid-cols-2 lg:gap-10 lg:py-20">
 
           {/* Left — headline & CTAs */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center py-8 lg:py-0">
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" aria-hidden="true" />
               {HERO.statusLine}
@@ -75,44 +75,74 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right — feature cards panel */}
-          <div className="hidden lg:flex flex-col justify-center gap-4">
+          {/* Right — feature cards panel (fills full column height) */}
+          <div className="hidden lg:flex flex-col gap-4 self-stretch">
             {[
               {
                 label: "Business Automation",
-                body: "Replace scattered spreadsheets and manual follow-ups with one clean digital workflow.",
+                tag: "Workflow Systems",
+                body: "Replace scattered spreadsheets and manual follow-ups with one clean, auditable digital workflow.",
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {/* Process/flow icon: nodes connected by arrows */}
+                    <circle cx="5" cy="6" r="2" />
+                    <circle cx="19" cy="6" r="2" />
+                    <circle cx="12" cy="18" r="2" />
+                    <path d="M7 6h10" />
+                    <path d="M17 6l-5 10" />
+                    <path d="M7 6l5 10" />
                   </svg>
                 ),
               },
               {
                 label: "AI Training",
-                body: "Practical AI literacy for teams, leaders, and individuals ready to work smarter.",
+                tag: "Skills & Literacy",
+                body: "Practical AI fluency programmes for teams, managers, and founders — built for real business contexts.",
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" /><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {/* Graduation/learning icon */}
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z" />
+                    <path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
                   </svg>
                 ),
               },
               {
                 label: "IT Advisory",
-                body: "Clear guidance on tools, infrastructure, and digital strategy for growing businesses.",
+                tag: "Strategy & Infrastructure",
+                body: "Clear, vendor-neutral guidance on the tools, platforms, and digital infrastructure your business actually needs.",
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><circle cx="12" cy="12" r="10" />
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {/* Shield/advisory icon */}
+                    <path d="M12 2l9 4v6c0 5-3.8 9.3-9 11C3.8 21.3 3 17 3 12V6l9-4z" />
+                    <path d="M9 12l2 2 4-4" />
                   </svg>
                 ),
               },
             ].map((card) => (
-              <div key={card.label} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-xs transition-colors hover:bg-white/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/8 text-teal">
-                  {card.icon}
+              <div
+                key={card.label}
+                className="group flex flex-1 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xs transition-all duration-300 hover:border-blue/40 hover:bg-white/[0.09]"
+              >
+                {/* Top row: icon + tag */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue/30 bg-blue/20 text-white transition-colors group-hover:bg-blue/30">
+                    {card.icon}
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white/50">
+                    {card.tag}
+                  </span>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">{card.label}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-white/55">{card.body}</p>
+                {/* Label + body */}
+                <div className="mt-5">
+                  <p className="text-base font-semibold tracking-tight text-white">{card.label}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/55">{card.body}</p>
+                </div>
+                {/* Bottom arrow indicator */}
+                <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-blue/70 transition-colors group-hover:text-blue">
+                  <span>Learn more</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
                 </div>
               </div>
             ))}
