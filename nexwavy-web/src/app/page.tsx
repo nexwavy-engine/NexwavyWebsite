@@ -41,34 +41,83 @@ export default function HomePage() {
   return (
     <>
       {/* 1 ── Hero ───────────────────────────────────────── */}
-      <section className="container-page pt-16 pb-10 md:pt-24 md:pb-14">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue/20 bg-blue/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-blue">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blue" aria-hidden="true" />
-            {HERO.statusLine}
+      <section className="w-full bg-midnight">
+        <div className="container-page grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+
+          {/* Left — headline & CTAs */}
+          <div className="flex flex-col justify-center">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" aria-hidden="true" />
+              {HERO.statusLine}
+            </div>
+            <h1 className="mt-7 text-balance text-4xl font-semibold tracking-[-0.045em] text-white md:text-5xl md:leading-[1.06] xl:text-6xl xl:leading-[1.04]">
+              {HERO.title}
+            </h1>
+            <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-white/60 md:text-lg">
+              {HERO.subtitle}
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href={HERO.primaryCta.href} className="btn bg-white text-midnight hover:bg-teal active:scale-[0.98]">
+                {HERO.primaryCta.label}
+              </Link>
+              <Link href={HERO.secondaryCta.href} className="btn border border-white/20 text-white hover:bg-white/10 active:scale-[0.98]">
+                {HERO.secondaryCta.label}
+              </Link>
+            </div>
+
+            {/* Trust strip */}
+            <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
+              {["Business Automation", "AI Training", "IT Advisory"].map((label) => (
+                <span key={label} className="rounded-full border border-white/15 bg-white/6 px-4 py-1.5 text-xs font-medium text-white/70">
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
-          <h1 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.045em] text-midnight md:text-[3.5rem] md:leading-[1.05]">
-            {HERO.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-slate">
-            {HERO.subtitle}
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href={HERO.primaryCta.href} className="btn-primary">
-              {HERO.primaryCta.label}
-            </Link>
-            <Link href={HERO.secondaryCta.href} className="btn-ghost">
-              {HERO.secondaryCta.label}
-            </Link>
-          </div>
-          {/* Service labels */}
-          <div className="mt-10 flex flex-wrap justify-center gap-2 border-t border-line pt-8">
-            {["Business Automation", "AI Training", "IT Advisory"].map((label) => (
-              <span key={label} className="rounded-full border border-line bg-white px-4 py-1.5 text-xs font-medium text-slate shadow-soft">
-                {label}
-              </span>
+
+          {/* Right — feature cards panel */}
+          <div className="hidden lg:flex flex-col justify-center gap-4">
+            {[
+              {
+                label: "Business Automation",
+                body: "Replace scattered spreadsheets and manual follow-ups with one clean digital workflow.",
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+                  </svg>
+                ),
+              },
+              {
+                label: "AI Training",
+                body: "Practical AI literacy for teams, leaders, and individuals ready to work smarter.",
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" /><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "IT Advisory",
+                body: "Clear guidance on tools, infrastructure, and digital strategy for growing businesses.",
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><circle cx="12" cy="12" r="10" />
+                  </svg>
+                ),
+              },
+            ].map((card) => (
+              <div key={card.label} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-xs transition-colors hover:bg-white/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/8 text-teal">
+                  {card.icon}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white">{card.label}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/55">{card.body}</p>
+                </div>
+              </div>
             ))}
           </div>
+
         </div>
       </section>
 

@@ -10,9 +10,10 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 12);
+    const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -25,9 +26,9 @@ export default function Nav() {
   return (
     <header
       className={`sticky top-0 z-40 border-b transition-all duration-300 ${
-        scrolled
+        scrolled || !isHome
           ? "border-line/80 bg-white/95 shadow-nav backdrop-blur-md"
-          : "border-transparent bg-white/90 backdrop-blur"
+          : "border-transparent bg-midnight"
       }`}
     >
       {/* Skip to main content for accessibility */}
@@ -50,6 +51,7 @@ export default function Nav() {
         <div className="hidden items-center gap-1 lg:flex" role="list">
           {NAV.filter((item) => item.href !== "/").map((item) => {
             const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            const isDark = isHome && !scrolled;
             return (
               <Link
                 key={item.href}
@@ -57,7 +59,11 @@ export default function Nav() {
                 role="listitem"
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-blue/8 text-blue"
+                    ? isDark
+                      ? "bg-white/10 text-white"
+                      : "bg-blue/8 text-blue"
+                    : isDark
+                    ? "text-white/70 hover:bg-white/10 hover:text-white"
                     : "text-slate hover:bg-cloud hover:text-midnight"
                 }`}
                 aria-current={isActive ? "page" : undefined}
@@ -70,14 +76,17 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <div className="hidden lg:block">
-            <Link href="/contact" className="btn-primary">
+            <Link
+              href="/contact"
+              className={`btn ${isHome && !scrolled ? "border border-white/20 bg-white/10 text-white hover:bg-white/20" : "bg-blue text-white hover:bg-midnight"} active:scale-[0.98]`}
+            >
               Book a Discovery Session
             </Link>
           </div>
 
           {/* Mobile menu toggle */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-blue hover:text-blue lg:hidden"
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden ${isHome && !scrolled ? "border-white/20 bg-white/10 text-white hover:bg-white/20" : "border-line bg-white hover:border-blue hover:text-blue"}`}
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
