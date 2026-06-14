@@ -28,7 +28,7 @@ export default function Nav() {
       className={`sticky top-0 z-40 border-b transition-all duration-300 ${
         scrolled || !isHome
           ? "border-line/80 bg-white/95 shadow-nav backdrop-blur-md"
-          : "border-transparent bg-midnight"
+          : "border-transparent bg-blue"
       }`}
     >
       {/* Skip to main content for accessibility */}
