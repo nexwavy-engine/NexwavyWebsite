@@ -19,16 +19,24 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const url = "https://nexwavy.com"; // Default URL, should be updated with real domain
+
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.company} — Business automation and AI productivity partner`,
-    template: `%s — ${SITE.shortName}`,
+    default: SITE.company,
+    template: `%s | ${SITE.shortName}`,
   },
   description: SITE.tagline,
-  metadataBase: new URL("https://nexwavy.com"),
+  metadataBase: new URL(url),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: SITE.company,
     description: SITE.tagline,
+    url: "/",
+    siteName: SITE.company,
+    locale: "en_US",
     type: "website",
   },
 };

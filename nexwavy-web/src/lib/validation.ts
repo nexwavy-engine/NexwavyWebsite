@@ -10,18 +10,20 @@ const phone = z
   .max(20)
   .regex(/^[+()\-\s\d]+$/, "Enter a valid phone number");
 
+const optionalString = z.string().trim().max(2000).optional().transform((v) => (v === "" ? undefined : v));
+
 export const leadSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(120),
   email: z.string().trim().toLowerCase().email("Enter a valid email"),
   phone: phone.optional().or(z.literal("").transform(() => undefined)),
-  organization: z.string().trim().max(160).optional().or(z.literal("").transform(() => undefined)),
+  organization: z.string().trim().max(160).optional().transform((v) => (v === "" ? undefined : v)),
   serviceInterest: z.enum([
     "business-automation",
     "ai-training",
     "it-consulting",
     "other",
   ]),
-  message: z.string().trim().max(2000).optional().or(z.literal("").transform(() => undefined)),
+  message: optionalString,
   source: z.string().trim().max(80).optional(),
 });
 
@@ -29,9 +31,9 @@ export const registrationSchema = z.object({
   fullName: z.string().trim().min(2, "Full name is required").max(120),
   email: z.string().trim().toLowerCase().email("Enter a valid email"),
   phone: phone,
-  organization: z.string().trim().max(160).optional().or(z.literal("").transform(() => undefined)),
+  organization: z.string().trim().max(160).optional().transform((v) => (v === "" ? undefined : v)),
   courseId: z.string().trim().min(1, "Select a course"),
-  cohortId: z.string().trim().min(1).optional().or(z.literal("").transform(() => undefined)),
+  cohortId: z.string().trim().max(80).optional().transform((v) => (v === "" ? undefined : v)),
   preferredFormat: z.enum(["online", "in-person", "hybrid"]),
 });
 

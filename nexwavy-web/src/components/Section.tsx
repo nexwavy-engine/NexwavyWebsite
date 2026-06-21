@@ -22,12 +22,12 @@ export function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <div className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-      <h2 className="text-balance text-3xl font-semibold tracking-[-0.04em] text-midnight md:text-[3rem] md:leading-[1.04]">
+    <div className={`max-w-4xl ${center ? "mx-auto text-center" : ""}`}>
+      {eyebrow && <span className="eyebrow mb-6 inline-block">{eyebrow}</span>}
+      <h2 className="text-balance text-4xl font-bold tracking-tight text-midnight md:text-[3.5rem] md:leading-[1.1]">
         {title}
       </h2>
-      {intro && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate">{intro}</p>}
+      {intro && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate/80">{intro}</p>}
     </div>
   );
 }
@@ -42,13 +42,13 @@ export function PageHeader({
   intro?: string;
 }) {
   return (
-    <header className="container-page pt-16 md:pt-20">
-      <div className="max-w-4xl">
-        {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-        <h1 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-midnight md:text-6xl md:leading-[1.02]">
+    <header className="container-page pt-20 md:pt-28 pb-12 md:pb-16 border-b border-line/20">
+      <div className="max-w-5xl">
+        {eyebrow && <span className="eyebrow mb-6 inline-block">{eyebrow}</span>}
+        <h1 className="text-balance text-5xl font-bold tracking-tight text-midnight md:text-7xl md:leading-[1.05]">
           {title}
         </h1>
-        {intro && <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate md:text-xl">{intro}</p>}
+        {intro && <p className="mt-8 max-w-3xl text-xl leading-relaxed text-slate/70 md:text-2xl">{intro}</p>}
       </div>
     </header>
   );
@@ -63,21 +63,22 @@ export function CtaBand({
 }) {
   return (
     <Section>
-      <div className="soft-band overflow-hidden p-8 md:p-12">
-        <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+      <div className="soft-band overflow-hidden p-10 md:p-20 relative group">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue/5 to-transparent -z-10 group-hover:opacity-80 transition-opacity" />
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
           <div>
-            <p className="eyebrow mb-4">Start a conversation</p>
-            <h2 className="text-balance text-3xl font-semibold tracking-[-0.04em] text-midnight md:text-5xl md:leading-[1.04]">
+            <span className="eyebrow mb-6 inline-block">Start a project</span>
+            <h2 className="text-balance text-4xl font-bold tracking-tight text-midnight md:text-6xl md:leading-[1.1]">
               {title}
             </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate">{body}</p>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate/80 font-medium">{body}</p>
           </div>
-          <div className="grid gap-4">
-            <Link href="/contact" className="btn-primary">
-              Book a Discovery Session
+          <div className="flex flex-col gap-5">
+            <Link href="/contact" className="btn-primary text-center">
+              Book a Strategy Session
             </Link>
-            <Link href="/register" className="btn-ghost">
-              Register for AI Training
+            <Link href="/register" className="btn-ghost text-center">
+              AI Training Path
             </Link>
           </div>
         </div>
