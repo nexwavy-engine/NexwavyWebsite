@@ -110,7 +110,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-24">
+      <Section className="py-12 md:py-16">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionHeading eyebrow="Modern Challenges" title={HOME_INTRO.title} intro={HOME_INTRO.body[0]} />
@@ -170,7 +170,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-24">
+      <Section className="py-12 md:py-16">
         <div className="soft-band p-10 md:p-20 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue via-signal to-blue opacity-20" />
           <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
@@ -238,7 +238,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="py-24">
+      <Section className="py-12 md:py-16">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div>
             <SectionHeading
