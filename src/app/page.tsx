@@ -29,22 +29,22 @@ const HERO_LABELS = [
 export default function HomePage() {
   return (
     <>
-      <Section className="pt-20 md:pt-32 pb-12 overflow-hidden relative">
+      <Section className="pt-16 md:pt-24 pb-8 md:pb-12 overflow-hidden relative min-h-[70vh] flex flex-col justify-center">
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl -z-10" />
-        <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16">
           <div>
-            <div className="flex items-center gap-3 mb-8 animate-fade-in">
+            <div className="flex items-center gap-3 mb-6 animate-fade-in">
               <span className="h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_8px_rgba(45,140,255,0.8)]" />
               <p className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-blue/80">{HERO.statusLine}</p>
             </div>
-            <h1 className="text-balance text-5xl font-extrabold tracking-tight text-midnight md:text-8xl md:leading-[0.9] lg:tracking-tighter">
+            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-midnight md:text-6xl lg:text-7xl md:leading-[1] lg:tracking-tighter">
               {HERO.title.split(" ").slice(0, -3).join(" ")} <br/>
               <span className="text-blue">{HERO.title.split(" ").slice(-3).join(" ")}</span>
             </h1>
-            <p className="mt-10 max-w-2xl text-xl leading-relaxed text-slate/70 md:text-2xl font-medium">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate/70 md:text-xl font-medium">
               {HERO.subtitle}
             </p>
-            <div className="mt-12 flex flex-col gap-5 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-5 sm:flex-row">
               <Link href={HERO.primaryCta.href} className="btn-primary px-10 py-5 text-base">
                 {HERO.primaryCta.label}
               </Link>
@@ -52,7 +52,7 @@ export default function HomePage() {
                 {HERO.secondaryCta.label}
               </Link>
             </div>
-            <div className="mt-12 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               {HERO_LABELS.map((label) => (
                 <span key={label} className="chip">
                   {label}
