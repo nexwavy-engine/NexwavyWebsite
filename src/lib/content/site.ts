@@ -4,7 +4,7 @@ export const SITE = {
   tagline:
     "Nexwavy Solutions Ltd helps growing businesses remove manual work, improve productivity, train their teams on practical AI use, and build smarter digital systems.",
   email: "hello@nexwavy.com",
-  phone: "+234 800 000 0000",
+  phone: "08169697844",
   location: "Lagos, Nigeria",
   socials: {
     linkedin: "https://www.linkedin.com/company/nexwavy",
