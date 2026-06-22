@@ -15,19 +15,21 @@ export function SectionHeading({
   title,
   intro,
   center = false,
+  dark = false,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   center?: boolean;
+  dark?: boolean;
 }) {
   return (
     <div className={`max-w-4xl ${center ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <span className="eyebrow mb-6 inline-block">{eyebrow}</span>}
-      <h2 className="text-balance text-4xl font-bold tracking-tight text-midnight md:text-[3.5rem] md:leading-[1.1]">
+      {eyebrow && <span className={`eyebrow mb-6 inline-block ${dark ? "text-blue/80" : ""}`}>{eyebrow}</span>}
+      <h2 className={`text-balance text-4xl font-bold tracking-tight md:text-[3.5rem] md:leading-[1.1] ${dark ? "text-white" : "text-midnight"}`}>
         {title}
       </h2>
-      {intro && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate/80">{intro}</p>}
+      {intro && <p className={`mt-6 max-w-2xl text-lg leading-relaxed ${dark ? "text-white/70" : "text-slate/80"}`}>{intro}</p>}
     </div>
   );
 }

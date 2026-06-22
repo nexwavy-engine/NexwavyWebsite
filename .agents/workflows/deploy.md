@@ -1,5 +1,5 @@
 ---
-description: How to commit changes and deploy the Nexwavy website
+description: How to commit changes and deploy the Nexwavy website (Root)
 ---
 
 # Deployment Workflow

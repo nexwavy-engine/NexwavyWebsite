@@ -221,6 +221,7 @@ export default function HomePage() {
                 eyebrow="Featured Training" 
                 title={TRAINING_FEATURE.title} 
                 intro={TRAINING_FEATURE.body} 
+                dark={true}
               />
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {TRAINING_FEATURE.outcomes.map((outcome) => (
