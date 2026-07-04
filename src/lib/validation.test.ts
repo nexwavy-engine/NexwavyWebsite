@@ -14,14 +14,14 @@ describe("parseLead", () => {
   });
 
   it("rejects a missing name and a bad email", () => {
-    const r = parseLead({ name: "", email: "nope", serviceInterest: "ai-training" });
+    const r = parseLead({ name: "", email: "nope", serviceInterest: "ai-training", message: "hello there" });
     expect(r.ok).toBe(false);
     expect(r.errors?.name).toBeTruthy();
     expect(r.errors?.email).toBeTruthy();
   });
 
   it("rejects an unknown service interest", () => {
-    const r = parseLead({ name: "Sam", email: "sam@x.com", serviceInterest: "rockets" });
+    const r = parseLead({ name: "Sam", email: "sam@x.com", serviceInterest: "rockets", message: "hello there" });
     expect(r.ok).toBe(false);
     expect(r.errors?.serviceInterest).toBeTruthy();
   });
@@ -30,13 +30,26 @@ describe("parseLead", () => {
     const r = parseLead({
       name: "Sam",
       email: "sam@x.com",
-      serviceInterest: "it-consulting",
+      serviceInterest: "it-advisory",
       organization: "",
       phone: "",
+      message: "Need to review our workflow",
     });
     expect(r.ok).toBe(true);
     expect(r.data?.organization).toBeUndefined();
     expect(r.data?.phone).toBeUndefined();
+  });
+
+  it("requires either email or phone", () => {
+    const r = parseLead({
+      name: "Sam",
+      serviceInterest: "ai-training",
+      message: "Need help with a training enquiry",
+      email: "",
+      phone: "",
+    });
+    expect(r.ok).toBe(false);
+    expect(r.errors?.email).toBeTruthy();
   });
 });
 
@@ -47,32 +60,32 @@ describe("parseRegistration", () => {
       email: "tobi@x.com",
       phone: "+234 801 234 5678",
       courseId: "masterclass-foundations",
-      preferredFormat: "online",
+      message: "Interested in joining this cohort",
     });
     expect(r.ok).toBe(true);
-    expect(r.data?.preferredFormat).toBe("online");
+    expect(r.data?.courseId).toBe("masterclass-foundations");
   });
 
-  it("requires phone and a course", () => {
+  it("requires a course and training interest", () => {
     const r = parseRegistration({
       fullName: "Tobi",
       email: "tobi@x.com",
-      preferredFormat: "online",
+      message: "",
     });
     expect(r.ok).toBe(false);
-    expect(r.errors?.phone).toBeTruthy();
     expect(r.errors?.courseId).toBeTruthy();
+    expect(r.errors?.message).toBeTruthy();
   });
 
-  it("rejects an invalid delivery format", () => {
+  it("requires either email or phone", () => {
     const r = parseRegistration({
       fullName: "Tobi",
-      email: "tobi@x.com",
-      phone: "08012345678",
+      email: "",
+      phone: "",
       courseId: "c1",
-      preferredFormat: "telepathy",
+      message: "Register me please",
     });
     expect(r.ok).toBe(false);
-    expect(r.errors?.preferredFormat).toBeTruthy();
+    expect(r.errors?.email).toBeTruthy();
   });
 });

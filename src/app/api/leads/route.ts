@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { parseLead } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
 import { getEmailSender, leadConfirmationEmail } from "@/lib/adapters/email";
+import { deliverLeadSubmission } from "@/lib/adapters/form-delivery";
 
 export const runtime = "nodejs";
 
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
     const db = getDb();
     const lead = await db.createLead({
       name: parsed.data.name,
-      email: parsed.data.email,
+      email: parsed.data.email ?? "",
       phone: parsed.data.phone,
       organization: parsed.data.organization,
       serviceInterest: parsed.data.serviceInterest,
@@ -30,13 +31,26 @@ export async function POST(req: Request) {
       source: parsed.data.source,
     });
 
+    await deliverLeadSubmission({
+      name: lead.name,
+      email: parsed.data.email,
+      phone: lead.phone,
+      organization: lead.organization,
+      preferredContactMethod: parsed.data.preferredContactMethod,
+      serviceInterest: lead.serviceInterest,
+      message: lead.message ?? "",
+      source: lead.source,
+    });
+
     // Fire confirmation email (mocked when no RESEND_API_KEY). Never block on it.
-    try {
+    if (parsed.data.email) {
+      try {
       const sender = getEmailSender();
       const msg = leadConfirmationEmail(lead.name);
-      await sender.send({ ...msg, to: lead.email });
-    } catch (e) {
-      console.error("[leads] confirmation email failed", e);
+        await sender.send({ ...msg, to: parsed.data.email });
+      } catch (e) {
+        console.error("[leads] confirmation email failed", e);
+      }
     }
 
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });

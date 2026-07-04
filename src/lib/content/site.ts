@@ -1,37 +1,61 @@
 export const SITE = {
   company: "Nexwavy Solutions Ltd",
   shortName: "Nexwavy",
+  publicDescription:
+    "Nexwavy Solutions Ltd is a Lagos-based business automation, AI training, and IT advisory company. We help growing teams replace scattered manual work with clear digital systems, better reporting, and cleaner day-to-day execution.",
+  longDescription:
+    "Nexwavy Solutions Ltd helps growing businesses improve how work gets done. We design automation tools, reporting workflows, AI training sessions, and advisory support for teams that want cleaner records, faster approvals, and better visibility across daily operations.",
   tagline:
-    "Nexwavy Solutions Ltd helps growing businesses remove manual work, improve productivity, train their teams on practical AI use, and build smarter digital systems.",
-  email: "hello@nexwavy.com",
-  phone: "08169697844",
+    "Nexwavy helps growing businesses move from manual operations to structured digital execution — through automation, AI training, and IT advisory.",
   location: "Lagos, Nigeria",
+  email: "hello@nexwavy.com",
+  privacyEmail: "privacy@nexwavy.com",
+  phoneRaw: "08169697844",
+  phoneDisplay: "+234 816 969 7844",
+  phoneLink: "tel:+2348169697844",
+  whatsappLabel: "Chat on WhatsApp",
+  whatsappUrl:
+    "https://wa.me/2348169697844?text=Hi%20Nexwavy%2C%20I%27d%20like%20to%20talk%20about%20a%20project",
+  siteUrl: "https://nexwavy.com",
+  ogImagePath: "/brand/og-default.png",
   socials: {
     linkedin: "https://www.linkedin.com/company/nexwavy",
     x: "https://x.com/nexwavy",
     instagram: "https://instagram.com/nexwavy",
   },
-};
+} as const;
 
 export const NAV = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/ai-training", label: "AI Training" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/ai-training", label: "AI Training" },
   { href: "/contact", label: "Contact" },
-];
+] as const;
+
+export const FOOTER_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/ai-training", label: "AI Training" },
+  { href: "/contact", label: "Contact" },
+  { href: "/register", label: "Register" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Use" },
+  { href: "/refunds", label: "Refund Policy" },
+] as const;
 
 export const HERO = {
-  eyebrow: "Business Automation · AI Training · IT Advisory",
   title: "We help growing businesses replace manual work with smarter digital systems.",
   subtitle:
-    "Nexwavy Solutions builds business automation tools, AI-enabled workflows, and practical productivity systems that help teams work faster, improve visibility, and reduce operational friction.",
-  primaryCta: { label: "Book a Discovery Session", href: "/contact" },
-  secondaryCta: { label: "Explore Our Services", href: "/services" },
+    "We turn scattered spreadsheets, WhatsApp threads, and paper forms into simple digital systems your team can actually use — so approvals move faster, records stay clean, and you can see what is happening across the business.",
+  primaryCta: { label: "Start a Project", href: "/contact" },
+  secondaryCta: { label: SITE.whatsappLabel, href: SITE.whatsappUrl },
   statusLine: "Now onboarding businesses for AI training and automation projects.",
   trustLine: "Business Automation · AI Training · IT Advisory",
-};
+} as const;
 
 export const HOME_INTRO = {
   title: "Manual work is quietly slowing too many growing businesses down.",
@@ -40,7 +64,7 @@ export const HOME_INTRO = {
     "The result is predictable: delayed execution, weak reporting, avoidable errors, missed opportunities, and poor visibility for decision-makers.",
     "The companies that improve fastest are not always the biggest. They are the ones that build better systems earlier.",
   ],
-};
+} as const;
 
 export const PROBLEMS = [
   {
@@ -59,486 +83,314 @@ export const PROBLEMS = [
     title: "Scattered tools",
     body: "Important information lives across WhatsApp, Excel, email, notebooks, and different staff phones.",
   },
-];
+] as const;
 
 export const HIGHLIGHTS = [
   {
-    title: "Business Automation",
-    body: "We build practical digital tools for attendance, sales tracking, inventory, approvals, customer management, reporting, and internal workflows.",
-    stat: "1 clear system",
-    statLabel: "instead of scattered tools",
-    cta: "Explore Business Automation",
+    title: "Business automation and productivity systems",
+    body: "We design and build usable systems for request tracking, approvals, attendance, field reporting, customer intake, dashboards, and simple internal portals.",
+    cta: "Explore Our Services",
     href: "/services",
   },
   {
-    title: "AI Training",
-    body: "We train teams, learners, and leaders to use AI responsibly for communication, research, reporting, planning, and day-to-day productivity.",
-    stat: "Practical AI",
-    statLabel: "for real work",
-    cta: "Explore AI Training",
+    title: "AI productivity training",
+    body: "We help professionals and teams use AI for writing, research, reporting, planning, spreadsheet support, and better day-to-day execution.",
+    cta: "View AI Training",
     href: "/ai-training",
   },
   {
-    title: "IT Advisory",
-    body: "We help businesses decide what to fix first, what to automate, what tools to use, and how to sequence smarter digital investments.",
-    stat: "Founder-led",
-    statLabel: "technology guidance",
-    cta: "Book a Discovery Session",
+    title: "IT advisory and process review",
+    body: "We help business owners and teams understand what to fix, what to automate, and whether the best answer is a tool, a workflow change, or both.",
+    cta: "Start a Project",
     href: "/contact",
   },
-];
+] as const;
+
+export const EXECUTION_LOOP = {
+  title: "The Nexwavy Execution Loop",
+  intro:
+    "We keep the work simple and disciplined: understand the workflow, build only what is needed, train the users, and improve from real usage.",
+  steps: [
+    {
+      step: "Diagnose the workflow",
+      body: "We study how the work currently moves, where delays happen, and what the team is already using.",
+    },
+    {
+      step: "Map the pain",
+      body: "We identify the repeated manual steps, missing records, unclear approvals, and reporting gaps.",
+    },
+    {
+      step: "Design the simplest fix",
+      body: "We recommend the lightest tool or process that can solve the problem properly.",
+    },
+    {
+      step: "Build the working version",
+      body: "We create the form, dashboard, portal, automation, or workflow needed to run the process better.",
+    },
+    {
+      step: "Train the users",
+      body: "We help the team understand how to use the system and what changes in their daily routine.",
+    },
+    {
+      step: "Measure and improve",
+      body: "We review adoption, fix what is not working, and improve the system based on real usage.",
+    },
+  ],
+} as const;
+
+export const WHY_NEXWAVY = {
+  title: "Technology only earns its place when it changes the result.",
+  body:
+    "We focus on the workflow first. That means understanding the request, record, approval, report, or training problem before deciding whether the answer is a spreadsheet cleanup, a form, a no-code tool, or a custom build.",
+  points: [
+    "Business-first thinking",
+    "Clear reporting",
+    "Clean records",
+    "Usable tools",
+    "Measured rollout",
+    "Dependable support",
+  ],
+} as const;
 
 export const AUDIENCES = [
   {
-    title: "Schools and training firms",
-    body: "Improve student registration, staff attendance, fee tracking, class coordination, communication, and reporting.",
+    title: "SMEs and growing teams",
+    body: "Teams that need a cleaner way to manage requests, approvals, tracking, reporting, and follow-up.",
   },
   {
-    title: "SMEs and growing teams",
-    body: "Replace manual tracking with simple systems for requests, sales, customers, inventory, and staff productivity.",
+    title: "Schools and training businesses",
+    body: "Organizations that need better coordination around attendance, registration, records, communication, and reporting.",
   },
   {
     title: "Retail and inventory-led businesses",
-    body: "Track sales, stock, staff activities, customer orders, and business performance more clearly.",
+    body: "Businesses that want clearer sales visibility, stock tracking, customer records, and branch-level reporting.",
   },
   {
     title: "Service businesses",
-    body: "Manage customer requests, job assignments, approvals, follow-ups, and reporting from one cleaner workflow.",
+    body: "Teams that need a more structured way to handle customer requests, job status, field activity, and open work.",
   },
   {
     title: "Corporate departments",
-    body: "Train teams on practical AI use and improve repetitive internal processes with structured automation.",
+    body: "Departments that want practical AI enablement and a more disciplined approach to repetitive internal processes.",
   },
   {
     title: "Founders and business owners",
-    body: "Get clarity on what to automate first, what tools to use, and how to build systems that support growth.",
+    body: "Leaders who want clarity on what to fix first before spending on the wrong tool or build.",
   },
-];
+] as const;
 
 export const OFFERS = [
   {
     title: "Paid Discovery Session",
     price: "From NGN 100,000",
-    body: "A focused business technology review to understand your current workflow, identify pain points, and recommend what to improve or automate first.",
-    cta: "Book Discovery",
+    body: "A focused review of your current workflow, friction points, reporting gaps, and next sensible system decision.",
+    cta: "Book a Discovery Session",
     href: "/contact",
   },
   {
     title: "AI Productivity Masterclass",
     price: "NGN 75,000 per participant",
-    body: "A practical AI training programme for professionals, students, business owners, and teams who want to use AI tools confidently and responsibly.",
+    body: "Hands-on AI training for professionals, business owners, and teams that want a clearer and safer way to use AI at work.",
     cta: "Register for AI Training",
     href: "/register",
   },
   {
     title: "Starter Automation Project",
     price: "From NGN 500,000",
-    body: "A focused automation build for one business process such as attendance, request tracking, sales reporting, inventory, approvals, or customer management.",
+    body: "A focused automation build for one business process such as attendance, request tracking, dashboards, intake, or approvals.",
     cta: "Discuss Automation",
     href: "/contact",
   },
   {
-    title: "Corporate AI Training",
-    price: "From NGN 500,000 per session",
-    body: "Private AI productivity training for teams, departments, schools, SMEs, and organizations.",
+    title: "Team & Corporate AI Training — From NGN 500,000 per session",
+    price: "Corporate training",
+    body: "Private AI productivity training for SMEs and teams, with corporate department and executive programmes available. Full pricing is on the AI Training page.",
     cta: "Request Corporate Training",
-    href: "/contact",
+    href: "/ai-training",
   },
-];
+] as const;
 
-export const TRAINING_FEATURE = {
-  title: "Train your people to use AI properly.",
+export const PROOF_NOTE = {
+  title: "Building proof the right way",
   body:
-    "AI is already changing how people write, plan, research, communicate, analyze, and make decisions. Nexwavy's AI Productivity Masterclass helps learners move from curiosity to practical capability.",
-  outcomes: [
-    "Understand AI in plain English",
-    "Write better prompts",
-    "Use AI for emails, reports, research, planning, and presentations",
-    "Protect sensitive information",
-    "Verify AI output before using it",
-    "Build a personal AI productivity routine",
+    "Nexwavy is currently focused on selected pilot and early client engagements across automation, reporting, and AI productivity training. As these projects conclude, we will publish verified outcomes, lessons, and client-approved case notes.",
+} as const;
+
+export const ABOUT = {
+  intro: SITE.longDescription,
+  whoWeAre:
+    "Nexwavy Solutions Ltd is a Lagos-based business automation, AI training, and IT advisory company. We help growing teams replace scattered manual work with clear digital systems, better reporting, and cleaner day-to-day execution.",
+  mission:
+    "To help businesses replace slow, manual, and scattered ways of working with structured, reliable, and intelligent digital systems.",
+  vision:
+    "To become a dependable technology partner for businesses across Africa, building practical systems that improve productivity, unlock growth, and prepare organizations for the future of work.",
+  belief:
+    "We do not build technology for decoration. We start by understanding the workflow, the friction, and the decision the business is trying to improve.",
+  approach: [
+    "Understand the workflow",
+    "Identify the real pain points",
+    "Recommend the lightest fix that will work",
+    "Build only what is needed",
+    "Train the users properly",
+    "Review and improve from real usage",
   ],
-};
-
-export const PROCESS = [
-  {
-    step: "Discover",
-    body: "We understand your business problem, current workflow, users, tools, and desired outcome.",
-  },
-  {
-    step: "Design",
-    body: "We define the right solution, user journey, process flow, and success measures.",
-  },
-  {
-    step: "Build",
-    body: "We create practical digital systems, automation workflows, dashboards, or training materials.",
-  },
-  {
-    step: "Train",
-    body: "We support adoption by training users, admins, learners, and decision-makers.",
-  },
-  {
-    step: "Support",
-    body: "We help you improve, refine, and scale the solution after launch.",
-  },
-];
-
-export const WHY_NEXWAVY = {
-  title: "We are not here to decorate your business with technology.",
-  body:
-    "We focus on business value. Before recommending a tool or building software, we first understand the work, the people, the process, and the result that matters.",
-  points: [
-    "Business-first thinking",
-    "Practical automation",
-    "AI productivity enablement",
-    "Founder-led execution",
-    "Structured discovery and delivery",
-    "Future-ready digital systems",
+  teamCopy:
+    "Nexwavy is led by founders with experience across business operations, technology delivery, process improvement, and digital systems. The team works with clients to understand the real workflow first, then design the simplest system that can improve it.",
+  founders: [
+    { name: "Femi Olawuyi", role: "Co-founder" },
+    { name: "Oloyede Akinmade", role: "Co-founder" },
   ],
-};
+} as const;
 
-export const SERVICES = [
+export const SERVICE_CATEGORIES = [
   {
     id: "business-automation",
-    title: "Business Automation and Custom Software Solutions",
+    title: "Business Automation",
     summary:
-      "We build practical digital tools that help businesses reduce manual work, improve visibility, and manage operations more effectively.",
-    points: [
-      "Staff and attendance systems",
-      "Sales and inventory trackers",
-      "Approval workflow portals",
-      "Customer and order management portals",
-      "Invoice and request management tools",
-      "Field operations dashboards",
-      "Payment tracking tools",
-      "Reporting dashboards",
-      "Google Sheets-to-app upgrades",
-      "Internal admin portals",
+      "For teams relying on spreadsheets, WhatsApp follow-ups, paper forms, or repeated manual approvals.",
+    bullets: [
+      "request tracking",
+      "approvals",
+      "attendance and field reporting",
+      "customer intake",
+      "task assignment",
+      "operational dashboards",
+      "simple internal portals",
     ],
-    bestFor: [
-      "SMEs",
-      "Schools",
-      "Retail businesses",
-      "Logistics businesses",
-      "Service businesses",
-      "Teams relying heavily on Excel, WhatsApp, paper forms, or scattered records",
-    ],
-    outcome:
-      "Clearer visibility, faster execution, fewer manual errors, better reporting, and stronger control over daily operations.",
   },
   {
-    id: "it-consulting",
-    title: "IT Consulting and Digital Transformation Advisory",
+    id: "ai-productivity-training",
+    title: "AI Productivity Training",
     summary:
-      "We help business owners and teams identify what to fix, what to automate, what tools to use, and what system should come first.",
-    points: [
-      "Paid discovery session",
-      "Business process review",
-      "Technology audit",
-      "Digital transformation roadmap",
-      "Workflow improvement consulting",
-      "Automation opportunity assessment",
-      "Data and reporting structure advisory",
-      "Monthly business IT advisory retainer",
+      "For professionals and teams that want to use AI properly at work without turning it into noise.",
+    bullets: [
+      "clear prompting",
+      "daily work use cases",
+      "document and email support",
+      "spreadsheet and reporting support",
+      "data safety",
+      "team usage rules",
     ],
-    bestFor: [
-      "Owners who know their operations are messy but do not know what system to build",
-      "Companies planning to digitize operations",
-      "SMEs preparing for scale",
-      "Organizations with too many manual approval points",
-      "Businesses using tools but not getting enough value from them",
-    ],
-    outcome:
-      "Clarity before spending, a realistic digital roadmap, and better sequencing for future system investments.",
   },
   {
-    id: "ai-training",
-    title: "AI Training and Workplace Productivity Enablement",
+    id: "it-advisory",
+    title: "IT Advisory",
     summary:
-      "We train individuals, teams, and organizations to use AI tools responsibly and practically for better work, faster execution, improved communication, and stronger decision-making.",
-    points: [
-      "AI for workplace productivity",
-      "AI for business owners",
-      "AI for executives and managers",
-      "AI for sales and customer service",
-      "AI for HR and admin teams",
-      "AI for project managers",
-      "AI for students and professionals",
-      "AI safety, privacy, and responsible usage",
+      "For businesses that need a clear view of what to fix before spending money on tools.",
+    bullets: [
+      "workflow review",
+      "automation readiness",
+      "tool selection",
+      "reporting structure",
+      "build-versus-buy decisions",
+      "implementation planning",
     ],
-    bestFor: [
-      "Corporate teams",
-      "SMEs",
-      "Schools and training providers",
-      "Founders and professionals",
-      "Organizations rolling AI out responsibly",
-    ],
-    outcome:
-      "Participants learn how to use AI to think better, work faster, create stronger documents, automate simple tasks, and improve productivity without exposing sensitive information.",
   },
-];
-
-export const PRODUCTIZED_OFFERS = [
-  {
-    title: "Staff and Attendance System",
-    price: "Starting from NGN 500,000",
-    body: "For teams that need cleaner check-in records, staff visibility, attendance reporting, and productivity tracking.",
-  },
-  {
-    title: "Sales and Inventory Tracker",
-    price: "Starting from NGN 500,000",
-    body: "For businesses that need to track stock, sales, branches, staff activity, and business performance more clearly.",
-  },
-  {
-    title: "Approval Workflow Portal",
-    price: "Starting from NGN 750,000",
-    body: "For businesses that need structured request approvals, status tracking, notifications, and audit visibility.",
-  },
-  {
-    title: "Customer and Order Management Portal",
-    price: "Starting from NGN 750,000",
-    body: "For businesses that need to track customer requests, orders, follow-ups, delivery status, and service history.",
-  },
-];
+] as const;
 
 export const DISCOVERY = {
   title: "Start with clarity before building.",
   body:
-    "A paid discovery session helps us understand your business problem properly before recommending a solution. This protects both sides from vague scope, wrong assumptions, and poor project estimates.",
+    "A discovery session helps you see what is actually slowing the work down, what should change first, and what kind of solution fits the business now.",
   fee: "From NGN 100,000",
   steps: [
-    "Submit a request",
-    "Complete a short intake form",
-    "Join a discovery session",
-    "Review your current workflow",
-    "Identify pain points and automation opportunities",
-    "Receive a recommendation and next-step quote",
+    "Share the workflow or process you want to improve",
+    "Join a structured review session",
+    "Map the pain points and reporting gaps",
+    "Identify the simplest viable fix",
+    "Receive a clearer next-step recommendation",
   ],
-};
+} as const;
+
+export const BUILD_VS_BUY = {
+  title: "We do not build custom software where a simple existing tool is enough.",
+  body:
+    "Sometimes the right answer is a spreadsheet cleanup, a no-code tool, a form, or a better reporting process. Sometimes the business needs a custom system. Nexwavy helps you make that call before money is wasted.",
+} as const;
 
 export const SERVICE_FAQ = [
   {
-    question: "Do you only build custom software?",
+    question: "Do you always recommend a custom build?",
     answer:
-      "No. We start by understanding the business problem. Sometimes the right answer is a custom tool. Sometimes it is workflow redesign, training, advisory, or improving an existing process.",
+      "No. We only recommend a custom build when the workflow genuinely needs one. Sometimes a simpler tool or cleaner process is enough.",
   },
   {
-    question: "Can you improve an existing process before building anything?",
+    question: "Can you review our process before any build starts?",
     answer:
-      "Yes. Our paid discovery and process review services help businesses understand what to fix before investing in software.",
+      "Yes. That is exactly what our discovery and advisory work is for.",
   },
   {
-    question: "Do you work with small businesses?",
+    question: "Do you work with small and growing businesses?",
     answer:
-      "Yes. We work with SMEs and growing businesses that need practical systems, not unnecessary complexity.",
+      "Yes. Most of our positioning is built around growing teams that need more structure without unnecessary complexity.",
   },
   {
-    question: "How does paid discovery work?",
+    question: "Can you support adoption after rollout?",
     answer:
-      "You book a discovery session, we review your current workflow and pain points, then recommend the best next step. If a build is required, the discovery output creates a clearer project scope and quote.",
+      "Yes. We can train users, refine the workflow, and support improvement after launch.",
+  },
+] as const;
+
+export const SOLUTION_EXAMPLES = [
+  {
+    title: "Attendance & Field Check-In",
+    body: "Track attendance, location-based check-ins, exceptions, and daily field activity in one place.",
+    label: "Sample dashboard",
+    sampleRows: [
+      "Amina Bello · Checked in · 08:07",
+      "Tunde Afolabi · On route · 08:19",
+      "Grace Okon · Exception logged · 08:26",
+    ],
   },
   {
-    question: "Can you support us after building a solution?",
-    answer:
-      "Yes. We can provide post-launch support, maintenance, training, and improvement advisory based on the agreed support package.",
+    title: "Sales & Inventory Tracker",
+    body: "Give small teams a cleaner way to record sales, monitor stock, and understand what is moving.",
   },
-];
+  {
+    title: "Approval Workflow",
+    body: "Move requests from submission to review, approval, and closure with clear ownership at each step.",
+    label: "Illustrative workflow",
+    sampleRows: ["Submitted", "Review", "Approved", "Closed"],
+  },
+  {
+    title: "Customer Request Portal",
+    body: "Collect customer requests through a simple form or portal and route each one to the right person or team.",
+  },
+  {
+    title: "Reporting Dashboard",
+    body: "Turn daily activity into simple views that help managers see progress, delays, and open work.",
+    label: "Sample dashboard",
+    sampleRows: ["Open work · 18", "Delayed items · 4", "Closed today · 11"],
+  },
+] as const;
 
 export const MASTERCLASS = {
-  name: "Learn AI. Apply AI. Work Smarter.",
+  name: "AI Productivity Masterclass",
   promise:
-    "The Nexwavy AI Productivity Masterclass helps individuals, teams, and businesses move from AI curiosity to practical AI capability.",
+    "AI training should make work clearer, not noisier. The Nexwavy AI Productivity Masterclass helps individuals and teams learn how to use AI for everyday work: writing, research, reporting, planning, analysis, and better decision support.",
   intro:
-    "This is not a theoretical programme. It is a hands-on training built around real work, real tools, and real productivity gains.",
-  formats: ["One-day workshop", "Two-day workshop", "Virtual training", "Hybrid / in-house"],
+    "This is practical, hands-on training for professionals, SMEs, and teams that want to use AI confidently, responsibly, and with better judgment at work.",
+  participantsLearn: [
+    "write clear prompts",
+    "use AI for everyday work tasks",
+    "review and improve AI outputs",
+    "avoid sharing sensitive data carelessly",
+    "build a personal AI routine for work",
+    "apply AI to documents, emails, spreadsheets, planning, and reporting",
+  ],
   audiences: [
+    "Professionals",
+    "SME teams",
     "Business owners",
-    "SME operators",
-    "Corporate teams",
-    "Managers and team leads",
-    "Sales and customer service teams",
-    "HR and admin teams",
-    "Project managers",
-    "Freelancers and consultants",
-    "Students and job seekers",
-    "Professionals who want to stay relevant",
-  ],
-  modules: {
-    "masterclass-foundations": [
-      "What AI is in plain English",
-      "How ChatGPT, Claude, Gemini, and Copilot differ",
-      "How to ask better questions and get better answers",
-      "What not to share with AI tools",
-      "How to verify AI output",
-      "How to build a daily AI routine for work, study, and life",
-    ],
-    "masterclass-team": [
-      "Use AI for writing, planning, research, and decision support",
-      "Create better reports, presentations, emails, and summaries",
-      "Use AI as a thinking partner, not just a writing tool",
-      "Build personal productivity systems",
-      "Reduce repetitive admin work",
-      "Improve communication and task execution",
-    ],
-    "masterclass-builders": [
-      "Use AI to create business plans, proposals, emails, and reports",
-      "Improve customer communication",
-      "Generate marketing ideas and sales content",
-      "Analyze business problems more clearly",
-      "Identify processes that can be automated",
-      "Build simple AI-supported workflows",
-    ],
-  } as Record<string, string[]>,
-  coreModules: [
-    "Understanding AI in plain English",
-    "Prompting for better results",
-    "AI tools and what they are best for",
-    "AI for daily work",
-    "AI for business growth",
-    "Privacy, safety, and responsible use",
-    "Building a personal AI operating system",
-  ],
-  outcomes: [
-    "Use AI tools confidently and responsibly",
-    "Write stronger prompts for work and business tasks",
-    "Create better documents, reports, emails, and content",
-    "Save time on repetitive tasks",
-    "Protect sensitive information while using AI",
-    "Identify business processes that can be improved with AI",
-    "Build a simple AI productivity routine",
-    "Apply AI immediately in daily work",
+    "Corporate departments",
+    "Executives and decision-makers",
   ],
   pricing: [
-    "Public Cohort — NGN 75,000 per participant",
+    "AI Productivity Masterclass — NGN 75,000 per participant",
     "SME Team Training — From NGN 500,000 per session",
     "Corporate Department Training — From NGN 1,500,000 per session",
     "Executive AI Workshop — From NGN 2,000,000 per session",
   ],
-};
-
-export const SAMPLE_SOLUTIONS = [
-  {
-    title: "Staff Attendance System",
-    sector: "Schools, SMEs, retail teams, and field teams",
-    problem: "Staff attendance is recorded manually or scattered across paper forms, WhatsApp messages, or spreadsheets.",
-    solution: "A digital attendance system for check-ins, staff records, reporting, and admin visibility.",
-    outcome: "Cleaner attendance data, easier reporting, and stronger admin visibility.",
-    features: [
-      "Staff profiles",
-      "Daily check-in records",
-      "Admin dashboard",
-      "Attendance reports",
-      "Exportable data",
-      "Optional location or time rules",
-    ],
-  },
-  {
-    title: "Sales and Inventory Tracker",
-    sector: "Retail stores, pharmacies, distributors, and small chains",
-    problem: "Sales and stock records are not updated clearly, making it difficult to know what is selling, what is available, and where gaps exist.",
-    solution: "A simple sales and inventory tracker that gives business owners clearer visibility across stock, sales, staff, and branches.",
-    outcome: "Better stock visibility, cleaner sales records, and easier branch-level reporting.",
-    features: [
-      "Product records",
-      "Stock updates",
-      "Sales entries",
-      "Branch or staff views",
-      "Low-stock alerts",
-      "Business performance dashboard",
-    ],
-  },
-  {
-    title: "Approval Workflow Portal",
-    sector: "SMEs, NGOs, schools, and internal departments",
-    problem: "Requests are submitted through chats, calls, or emails with no clear owner, approval trail, or status visibility.",
-    solution: "A structured approval workflow portal that tracks requests from submission to final decision.",
-    outcome: "Faster approvals, clearer accountability, and better audit visibility.",
-    features: [
-      "Request forms",
-      "Approval stages",
-      "Role-based review",
-      "Status tracking",
-      "Notifications",
-      "Audit trail",
-    ],
-  },
-  {
-    title: "Customer and Order Management Portal",
-    sector: "Service businesses, logistics businesses, and training firms",
-    problem: "Customer requests and orders are handled manually, making follow-up, delivery tracking, and reporting difficult.",
-    solution: "A digital portal for customer records, order tracking, service requests, and follow-up visibility.",
-    outcome: "Cleaner follow-up, better service tracking, and more reliable customer records.",
-    features: [
-      "Customer profiles",
-      "Order records",
-      "Status updates",
-      "Follow-up notes",
-      "Admin dashboard",
-      "Reports and exports",
-    ],
-  },
-  {
-    title: "AI Productivity Training Portal",
-    sector: "Training firms, academies, coaches, and development programmes",
-    problem: "Learners register manually, course details are scattered, and training administrators lack clear visibility.",
-    solution: "A lightweight registration and learner dashboard for AI training programmes.",
-    outcome: "Cleaner learner records, clearer payment status, and easier training coordination.",
-    features: [
-      "Learner registration",
-      "Google sign-in",
-      "Course selection",
-      "Payment status",
-      "Resource links",
-      "Admin dashboard",
-    ],
-  },
-  {
-    title: "Business Dashboard and Reporting Tool",
-    sector: "Business owners, operations teams, schools, and SMEs",
-    problem: "Managers cannot see key business data in one place and depend on manual reporting.",
-    solution: "A dashboard that consolidates operational records into clear business views.",
-    outcome: "Real visibility, faster decision-making, and less dependence on manual reporting cycles.",
-    features: [
-      "KPI cards",
-      "Charts and summaries",
-      "Filters",
-      "Exportable reports",
-      "Role-based visibility",
-      "Data import from spreadsheets or forms",
-    ],
-  },
-];
-
-export const ABOUT = {
-  intro:
-    "Nexwavy Solutions Ltd is a business automation, AI productivity, and digital transformation company helping organizations work smarter, move faster, and grow with better systems.",
-  whoWeAre:
-    "We work with growing businesses, teams, and professionals who are ready to move away from scattered operations and adopt smarter systems for productivity, visibility, and growth.",
-  mission:
-    "To help businesses replace slow, manual, and scattered ways of working with structured, reliable, and intelligent digital systems.",
-  vision:
-    "To become a trusted technology partner for businesses across Africa, building practical solutions that improve productivity, unlock growth, and prepare organizations for the future of work.",
-  belief:
-    "We do not believe in technology for decoration. We begin by understanding the business problem, the current workflow, the people involved, and the result the client wants to achieve.",
-  approach: [
-    "Understand the business problem",
-    "Review the current process",
-    "Identify gaps and automation opportunities",
-    "Design the right solution",
-    "Build, test, and deploy",
-    "Train users and support adoption",
-    "Improve based on real usage",
-  ],
-  founders: [
-    {
-      name: "Femi Olawuyi",
-      role: "Co-Founder, Nexwavy Solutions Ltd",
-      bio: "Profile details to be finalized. Neutral placeholder retained until the approved founder bio is supplied.",
-    },
-    {
-      name: "Oloyede Akinmade",
-      role: "Co-Founder, Nexwavy Solutions Ltd",
-      bio: "Profile details to be finalized. Neutral placeholder retained until the approved founder bio is supplied.",
-    },
-  ],
-};
+  noPaymentCopy:
+    "No payment is taken on this page. After registration, the Nexwavy team will contact you with the next step for payment and seat confirmation.",
+} as const;

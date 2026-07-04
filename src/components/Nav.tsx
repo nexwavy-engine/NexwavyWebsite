@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
-import { NAV } from "@/lib/content/site";
+import { NAV, SITE } from "@/lib/content/site";
+import { trackEvent } from "@/lib/tracking";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -27,8 +28,17 @@ export default function Nav() {
           ))}
         </div>
 
-        <div className="hidden lg:block">
-          <Link href="/contact" className="btn-primary">
+        <div className="hidden items-center gap-3 lg:flex">
+          <a
+            href={SITE.whatsappUrl}
+            className="btn-ghost"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent("WhatsApp CTA click", { location: "header" })}
+          >
+            {SITE.whatsappLabel}
+          </a>
+          <Link href="/contact" className="btn-primary" onClick={() => trackEvent("Start a Project CTA click", { location: "header" })}>
             Start a Project
           </Link>
         </div>
@@ -56,7 +66,19 @@ export default function Nav() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/contact" className="btn-primary mt-4" onClick={() => setOpen(false)}>
+            <a
+              href={SITE.whatsappUrl}
+              className="btn-ghost mt-2"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => {
+                trackEvent("WhatsApp CTA click", { location: "mobile-menu" });
+                setOpen(false);
+              }}
+            >
+              {SITE.whatsappLabel}
+            </a>
+            <Link href="/contact" className="btn-primary" onClick={() => setOpen(false)}>
               Start a Project
             </Link>
           </div>

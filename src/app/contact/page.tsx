@@ -1,20 +1,26 @@
-import type { Metadata } from "next";
 import { PageHeader, Section } from "@/components/Section";
+import TrackedLink from "@/components/TrackedLink";
 import ContactForm from "@/components/ContactForm";
 import { SITE } from "@/lib/content/site";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact Nexwavy Solutions Ltd to discuss automation, AI training, or IT advisory.",
-};
+export const metadata = buildMetadata({
+  title: "Contact Nexwavy Solutions | Start a Project",
+  description:
+    "Talk to Nexwavy about automating a workflow, training your team on AI, or reviewing your current process. Based in Lagos, Nigeria.",
+  path: "/contact",
+  ogTitle: "Contact Nexwavy Solutions",
+  ogDescription:
+    "Start with a clear conversation about the workflow, visibility, or AI challenge you want to fix next.",
+});
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Let's talk about the system your business needs next."
-        intro="Whether you want to train your team, automate a workflow, review your current process, or build a digital solution, we can help you start with clarity."
+        title="Tell us what you are trying to fix, build, or improve."
+        intro="We will review your message and respond with the next sensible step."
       />
 
       <Section>
@@ -24,52 +30,52 @@ export default function ContactPage() {
           <aside className="grid content-start gap-5">
             <div className="bento p-7">
               <h2 className="text-lg font-semibold text-midnight">Contact options</h2>
-              <div className="mt-4 grid gap-3 text-sm">
-                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
-                  <p className="font-semibold text-midnight">Book a Discovery Session</p>
-                  <p className="mt-1 text-slate">For businesses that need clarity on what to automate or improve first.</p>
-                </div>
-                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
-                  <p className="font-semibold text-midnight">Request AI Training</p>
-                  <p className="mt-1 text-slate">For teams, schools, SMEs, and organizations that want practical AI productivity training.</p>
-                </div>
-                <div className="rounded-2xl border border-line bg-cloud/60 p-4">
-                  <p className="font-semibold text-midnight">Discuss Automation</p>
-                  <p className="mt-1 text-slate">For businesses ready to replace manual tracking with a better system.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bento p-7">
-              <h2 className="text-lg font-semibold text-midnight">Reach us directly</h2>
-              <dl className="mt-4 grid gap-3 text-sm">
+              <dl className="mt-4 grid gap-4 text-sm">
                 <div>
                   <dt className="text-slate">Email</dt>
                   <dd>
-                    <a className="font-medium text-midnight hover:text-blue" href={`mailto:${SITE.email}`}>
+                    <TrackedLink className="font-medium text-midnight hover:text-blue" href={`mailto:${SITE.email}`} eventName="Email click" eventData={{ location: "contact-page" }}>
                       {SITE.email}
-                    </a>
+                    </TrackedLink>
                   </dd>
                 </div>
                 <div>
                   <dt className="text-slate">Phone</dt>
-                  <dd className="font-medium text-midnight">{SITE.phone}</dd>
+                  <dd>
+                    <TrackedLink className="font-medium text-midnight hover:text-blue" href={SITE.phoneLink} eventName="Phone click" eventData={{ location: "contact-page" }}>
+                      {SITE.phoneDisplay}
+                    </TrackedLink>
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-slate">Location</dt>
                   <dd className="font-medium text-midnight">{SITE.location}</dd>
                 </div>
+                <div>
+                  <dt className="text-slate">WhatsApp</dt>
+                  <dd>
+                    <TrackedLink
+                      className="font-medium text-midnight hover:text-blue"
+                      href={SITE.whatsappUrl}
+                      external
+                      eventName="WhatsApp CTA click"
+                      eventData={{ location: "contact-page" }}
+                    >
+                      {SITE.whatsappLabel}
+                    </TrackedLink>
+                  </dd>
+                </div>
               </dl>
             </div>
 
             <div className="soft-band p-7">
-              <h2 className="text-lg font-semibold text-midnight">Looking for training?</h2>
+              <h2 className="text-lg font-semibold text-midnight">Prefer to talk now?</h2>
               <p className="mt-2 text-sm text-slate">
-                If you're here for the AI Productivity Masterclass, you can register directly and we'll follow up with confirmation and payment guidance.
+                If the project is easier to explain by chat, you can reach Nexwavy directly on WhatsApp.
               </p>
-              <a href="/register" className="btn-primary mt-5">
-                Register for AI Training
-              </a>
+              <TrackedLink href={SITE.whatsappUrl} external className="btn-primary mt-5" eventName="WhatsApp CTA click" eventData={{ location: "contact-sidebar" }}>
+                {SITE.whatsappLabel}
+              </TrackedLink>
             </div>
           </aside>
         </div>

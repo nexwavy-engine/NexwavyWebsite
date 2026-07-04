@@ -3,9 +3,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { parseRegistration } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
-import { getPaymentLink } from "@/lib/adapters/payments";
+import { deliverRegistrationSubmission } from "@/lib/adapters/form-delivery";
 import { getEmailSender, registrationConfirmationEmail } from "@/lib/adapters/email";
-import { findCourse } from "@/lib/data/catalog";
+import { findCohort, findCourse, formatCohortLabel } from "@/lib/data/catalog";
 
 export const runtime = "nodejs";
 
@@ -26,6 +26,7 @@ export async function POST(req: Request) {
   if (!course) {
     return NextResponse.json({ errors: { courseId: "Unknown course." } }, { status: 422 });
   }
+  const cohort = parsed.data.cohortId ? findCohort(parsed.data.cohortId) : undefined;
 
   try {
     const db = getDb();
@@ -38,7 +39,7 @@ export async function POST(req: Request) {
       const learner = await db.upsertLearner({
         authUserId,
         fullName: parsed.data.fullName,
-        email: parsed.data.email,
+        email: parsed.data.email ?? "",
         phone: parsed.data.phone,
         organization: parsed.data.organization,
       });
@@ -48,25 +49,36 @@ export async function POST(req: Request) {
     const registration = await db.createRegistration({
       learnerId,
       fullName: parsed.data.fullName,
-      email: parsed.data.email,
+      email: parsed.data.email ?? "",
       phone: parsed.data.phone,
       organization: parsed.data.organization,
       courseId: course.id,
       cohortId: parsed.data.cohortId,
-      preferredFormat: parsed.data.preferredFormat,
+      preferredFormat: cohort?.deliveryFormat ?? "online",
     });
-
-    const payment = getPaymentLink(course.id);
+    await deliverRegistrationSubmission({
+      fullName: parsed.data.fullName,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      organization: parsed.data.organization,
+      roleTitle: parsed.data.roleTitle,
+      courseTitle: course.title,
+      cohortLabel: cohort ? formatCohortLabel(cohort) : undefined,
+      participantCount: parsed.data.participantCount,
+      message: parsed.data.message,
+    });
 
     // Confirmation email with the payment link (mocked when no RESEND_API_KEY).
     let emailMocked = true;
-    try {
+    if (parsed.data.email) {
+      try {
       const sender = getEmailSender();
-      const msg = registrationConfirmationEmail(registration.fullName, course.title, payment.url);
-      const res = await sender.send({ ...msg, to: registration.email });
-      emailMocked = res.mocked;
-    } catch (e) {
-      console.error("[registrations] confirmation email failed", e);
+        const msg = registrationConfirmationEmail(registration.fullName, course.title);
+        const res = await sender.send({ ...msg, to: parsed.data.email });
+        emailMocked = res.mocked;
+      } catch (e) {
+        console.error("[registrations] confirmation email failed", e);
+      }
     }
 
     return NextResponse.json(
@@ -74,8 +86,6 @@ export async function POST(req: Request) {
         ok: true,
         id: registration.id,
         courseTitle: course.title,
-        paymentUrl: payment.url,
-        paymentConfigured: payment.configured,
         emailMocked,
       },
       { status: 201 },

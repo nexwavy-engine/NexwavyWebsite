@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
-import { NAV, SITE } from "@/lib/content/site";
+import TrackedLink from "@/components/TrackedLink";
+import { FOOTER_LINKS, SITE } from "@/lib/content/site";
 
 export default function Footer() {
   return (
@@ -9,21 +10,23 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_0.8fr_0.8fr]">
           <div>
             <BrandLogo className="h-10 w-auto transition-transform hover:scale-105" />
-            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-slate/80">{SITE.tagline}</p>
+            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-slate/80">{SITE.publicDescription}</p>
             <div className="mt-8 space-y-2 text-sm text-slate/60">
-              <p className="flex items-center gap-2 hover:text-blue transition-colors"><span aria-hidden="true">✉️</span> {SITE.email}</p>
-              <p className="flex items-center gap-2"><span aria-hidden="true">📞</span> {SITE.phone}</p>
+              <p className="font-semibold text-midnight">{SITE.company}</p>
               <p className="flex items-center gap-2"><span aria-hidden="true">📍</span> {SITE.location}</p>
+              <p className="flex items-center gap-2 hover:text-blue transition-colors"><span aria-hidden="true">✉️</span> <TrackedLink href={`mailto:${SITE.email}`} eventName="Email click" eventData={{ location: "footer" }}>{SITE.email}</TrackedLink></p>
+              <p className="flex items-center gap-2 hover:text-blue transition-colors"><span aria-hidden="true">📞</span> <TrackedLink href={SITE.phoneLink} eventName="Phone click" eventData={{ location: "footer" }}>{SITE.phoneDisplay}</TrackedLink></p>
+              <p className="flex items-center gap-2 hover:text-blue transition-colors"><span aria-hidden="true">💬</span> <TrackedLink href={SITE.whatsappUrl} eventName="WhatsApp CTA click" eventData={{ location: "footer" }} external>{SITE.whatsappLabel}</TrackedLink></p>
             </div>
             <p className="mt-10 text-sm font-bold text-blue uppercase tracking-widest">
-              Built for intelligent execution.
+              Business Automation · AI Training · IT Advisory
             </p>
           </div>
 
           <div>
             <h3 className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-midnight/40">Explore</h3>
             <ul className="mt-6 space-y-4 text-[14px] font-medium text-slate/70">
-              {NAV.map((item) => (
+              {FOOTER_LINKS.slice(0, 6).map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="transition-all hover:text-blue hover:pl-1">
                     {item.label}
@@ -34,33 +37,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-midnight/40">Quick actions</h3>
+            <h3 className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-midnight/40">More</h3>
             <ul className="mt-6 space-y-4 text-[14px] font-medium text-slate/70">
-              <li>
-                <Link href="/contact" className="transition-all hover:text-blue hover:pl-1">
-                  Start a Project
-                </Link>
-              </li>
-              <li>
-                <Link href="/register" className="transition-all hover:text-blue hover:pl-1">
-                  AI Training Registration
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="transition-all hover:text-blue hover:pl-1">
-                  Corporate Inquiries
-                </Link>
-              </li>
-              <li className="pt-4">
-                <Link href="/privacy" className="text-xs text-slate/40 hover:text-blue">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-xs text-slate/40 hover:text-blue">
-                  Terms of Use
-                </Link>
-              </li>
+              {FOOTER_LINKS.slice(6).map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="transition-all hover:text-blue hover:pl-1">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

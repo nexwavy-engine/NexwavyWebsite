@@ -10,31 +10,67 @@ const phone = z
   .max(20)
   .regex(/^[+()\-\s\d]+$/, "Enter a valid phone number");
 
-const optionalString = z.string().trim().max(2000).optional().transform((v) => (v === "" ? undefined : v));
+const optionalEmail = z.string().trim().toLowerCase().email("Enter a valid email").optional().or(z.literal("").transform(() => undefined));
+const honeypot = z.string().trim().optional();
 
 export const leadSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(120),
-  email: z.string().trim().toLowerCase().email("Enter a valid email"),
+  email: optionalEmail,
   phone: phone.optional().or(z.literal("").transform(() => undefined)),
   organization: z.string().trim().max(160).optional().transform((v) => (v === "" ? undefined : v)),
+  preferredContactMethod: z.enum(["email", "phone", "whatsapp"]).optional(),
   serviceInterest: z.enum([
     "business-automation",
     "ai-training",
-    "it-consulting",
+    "it-advisory",
     "other",
   ]),
-  message: optionalString,
+  message: z.string().trim().min(10, "Tell us a bit more about what you want to discuss.").max(2000),
   source: z.string().trim().max(80).optional(),
+  website: honeypot,
+}).superRefine((value, ctx) => {
+  if (!value.email && !value.phone) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Enter an email address or phone number.",
+      path: ["email"],
+    });
+  }
+  if (value.website) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Spam submission rejected.",
+      path: ["website"],
+    });
+  }
 });
 
 export const registrationSchema = z.object({
   fullName: z.string().trim().min(2, "Full name is required").max(120),
-  email: z.string().trim().toLowerCase().email("Enter a valid email"),
-  phone: phone,
+  email: optionalEmail,
+  phone: phone.optional().or(z.literal("").transform(() => undefined)),
   organization: z.string().trim().max(160).optional().transform((v) => (v === "" ? undefined : v)),
+  roleTitle: z.string().trim().max(120).optional().transform((v) => (v === "" ? undefined : v)),
   courseId: z.string().trim().min(1, "Select a course"),
   cohortId: z.string().trim().max(80).optional().transform((v) => (v === "" ? undefined : v)),
-  preferredFormat: z.enum(["online", "in-person", "hybrid"]),
+  participantCount: z.string().trim().max(20).optional().transform((v) => (v === "" ? undefined : v)),
+  message: z.string().trim().min(2, "Tell us your training interest or special request.").max(2000),
+  website: honeypot,
+}).superRefine((value, ctx) => {
+  if (!value.email && !value.phone) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Enter an email address or phone number.",
+      path: ["email"],
+    });
+  }
+  if (value.website) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Spam submission rejected.",
+      path: ["website"],
+    });
+  }
 });
 
 export type LeadInput = z.infer<typeof leadSchema>;

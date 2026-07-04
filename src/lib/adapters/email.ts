@@ -65,19 +65,19 @@ export function leadConfirmationEmail(name: string): EmailMessage {
   return {
     to: "", // filled by caller
     subject: "We received your message — Nexwavy Solutions",
-    text: `Hi ${name}, thanks for reaching out to Nexwavy Solutions. A member of our team will respond shortly.`,
-    html: `<p>Hi ${escapeHtml(name)},</p><p>Thanks for reaching out to <strong>Nexwavy Solutions</strong>. A member of our team will respond shortly.</p>`,
+    text: `Hi ${name}, thanks — we have received your message. A member of the Nexwavy team will review it and respond. For anything urgent, reach us on WhatsApp or at hello@nexwavy.com.`,
+    html: `<p>Hi ${escapeHtml(name)},</p><p>Thanks — we have received your message. A member of the <strong>Nexwavy</strong> team will review it and respond.</p><p>For anything urgent, reach us on WhatsApp or at <a href="mailto:hello@nexwavy.com">hello@nexwavy.com</a>.</p>`,
   };
 }
 
-export function registrationConfirmationEmail(name: string, courseTitle: string, paymentUrl: string): EmailMessage {
+export function registrationConfirmationEmail(name: string, courseTitle: string): EmailMessage {
   return {
     to: "",
     subject: `You're registered for ${courseTitle}`,
-    text: `Hi ${name}, your place in "${courseTitle}" is reserved. Complete payment to confirm: ${paymentUrl}`,
-    html: `<p>Hi ${escapeHtml(name)},</p><p>Your place in <strong>${escapeHtml(
+    text: `Hi ${name}, thanks — we have received your registration for "${courseTitle}". The Nexwavy team will contact you with the next step for payment and seat confirmation.`,
+    html: `<p>Hi ${escapeHtml(name)},</p><p>Thanks — we have received your registration for <strong>${escapeHtml(
       courseTitle,
-    )}</strong> is reserved. Complete payment to confirm your seat:</p><p><a href="${paymentUrl}">Pay now</a></p>`,
+    )}</strong>.</p><p>The Nexwavy team will contact you with the next step for payment and seat confirmation.</p>`,
   };
 }
 

@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="40" fill="#0B1F3B"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="url(#panel)"/>
+  <circle cx="1012" cy="152" r="180" fill="#2D8CFF" fill-opacity="0.12"/>
+  <circle cx="258" cy="510" r="220" fill="#BFE8E6" fill-opacity="0.22"/>
+  <rect x="94" y="122" width="176" height="176" rx="28" fill="white" fill-opacity="0.08"/>
+  <path d="M138 160L213 140V234L138 248V160Z" fill="#3069B0"/>
+  <path d="M138 258L201 246V340L138 354V258Z" fill="#3069B0"/>
+  <path d="M240 150L302 138V232L240 246V150Z" fill="#2D8CFF"/>
+  <path d="M226 254L302 244V340L226 322V254Z" fill="#3069B0"/>
+  <path d="M204 202L236 194V270L204 278V202Z" fill="white"/>
+  <text x="334" y="220" fill="white" font-family="Montserrat, Arial, sans-serif" font-size="64" font-weight="700">
+    Nexwavy Solutions
+  </text>
+  <text x="334" y="300" fill="#D9E1EA" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="500">
+    Business Automation · AI Training · IT Advisory
+  </text>
+  <text x="96" y="444" fill="#D9E1EA" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">
+    We help growing businesses move from manual operations
+  </text>
+  <text x="96" y="488" fill="#D9E1EA" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">
+    to structured digital execution.
+  </text>
+  <rect x="96" y="520" width="356" height="18" rx="9" fill="#BFE8E6" fill-opacity="0.38"/>
+  <defs>
+    <linearGradient id="panel" x1="48" y1="48" x2="1100" y2="582" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#132A4A"/>
+      <stop offset="1" stop-color="#102641"/>
+    </linearGradient>
+  </defs>
+</svg>

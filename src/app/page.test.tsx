@@ -1,9 +1,7 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
 import HomePage from "./page";
-import "@testing-library/jest-dom";
 
-// Mock the components used in page.tsx that might cause issues in jsdom
 vi.mock("@/components/Section", () => ({
   Section: ({ children, className }: any) => <section className={className}>{children}</section>,
   SectionHeading: ({ title, eyebrow, intro }: any) => (
@@ -18,19 +16,18 @@ vi.mock("@/components/Section", () => ({
 
 describe("HomePage", () => {
   it("renders the hero section with the correct title", () => {
-    render(<HomePage />);
-    expect(screen.getByText(/We help growing businesses replace manual work/i)).toBeInTheDocument();
+    const html = renderToStaticMarkup(<HomePage />);
+    expect(html).toContain("We help growing businesses replace manual work with smarter digital systems.");
   });
 
-  it("renders the service focus areas", () => {
-    render(<HomePage />);
-    expect(screen.getByText(/Trusted Focus/i)).toBeInTheDocument();
+  it("renders the execution loop section", () => {
+    const html = renderToStaticMarkup(<HomePage />);
+    expect(html).toContain("The Nexwavy Execution Loop");
   });
 
-  it("renders a link to contact/discovery", () => {
-    render(<HomePage />);
-    const links = screen.getAllByRole("link");
-    const hasContact = links.some(link => link.getAttribute("href") === "/contact");
-    expect(hasContact).toBe(true);
+  it("renders a start a project link", () => {
+    const html = renderToStaticMarkup(<HomePage />);
+    expect(html).toContain('href="/contact"');
+    expect(html).toContain("Start a Project");
   });
 });

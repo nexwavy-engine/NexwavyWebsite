@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE } from "@/lib/content/site";
 
 export function Section({
   children,
@@ -77,11 +78,11 @@ export function CtaBand({
           </div>
           <div className="flex flex-col gap-5">
             <Link href="/contact" className="btn-primary text-center">
-              Book a Strategy Session
+              Start a Project
             </Link>
-            <Link href="/register" className="btn-ghost text-center">
-              AI Training Path
-            </Link>
+            <a href={SITE.whatsappUrl} target="_blank" rel="noreferrer" className="btn-ghost text-center">
+              {SITE.whatsappLabel}
+            </a>
           </div>
         </div>
       </div>

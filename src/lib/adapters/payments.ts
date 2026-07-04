@@ -1,6 +1,5 @@
-// Payments adapter (ADR-001): Phase 1 is a hosted Paystack/Flutterwave payment
-// LINK (no-code). We resolve a link per course from env, with a sensible global
-// fallback. Phase 2 (webhooks/reconciliation) replaces only this module.
+// Payments adapter kept for future use when Nexwavy enables an online payment
+// flow. For launch, payment is handled offline after the team follows up.
 //
 // Env conventions (any may be set; first match wins):
 //   PAYMENT_LINK_<COURSE_ID_UPPER_SNAKE>   e.g. PAYMENT_LINK_MASTERCLASS_FOUNDATIONS
@@ -21,6 +20,5 @@ export function getPaymentLink(courseId: string, env: NodeJS.ProcessEnv = proces
   const fallback = env.PAYMENT_LINK_DEFAULT || env.NEXT_PUBLIC_PAYMENT_LINK_DEFAULT;
   const url = perCourse || fallback;
   if (url) return { url, configured: true };
-  // Placeholder so the UI flow never breaks before the link is added.
-  return { url: "https://paystack.com/pay/nexwavy-placeholder", configured: false };
+  return { url: "https://nexwavy.com/contact", configured: false };
 }
