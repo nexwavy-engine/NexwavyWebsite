@@ -25,11 +25,11 @@ export function SectionHeading({
 }) {
   return (
     <div className={`max-w-4xl ${center ? "mx-auto text-center" : ""}`}>
-      {eyebrow && <span className={`eyebrow mb-6 inline-block ${dark ? "text-blue/80" : ""}`}>{eyebrow}</span>}
+      {eyebrow && <span className={`eyebrow mb-6 inline-block ${dark ? "bg-blue/20 text-blue/90 border-blue/40" : ""}`}>{eyebrow}</span>}
       <h2 className={`text-balance text-4xl font-bold tracking-tight md:text-[3.5rem] md:leading-[1.1] ${dark ? "text-white" : "text-midnight"}`}>
         {title}
       </h2>
-      {intro && <p className={`mt-6 max-w-2xl text-lg leading-relaxed ${dark ? "text-white/70" : "text-slate/80"}`}>{intro}</p>}
+      {intro && <p className={`mt-6 max-w-3xl text-lg leading-relaxed font-medium ${dark ? "text-white/80" : "text-slate/75"}`}>{intro}</p>}
     </div>
   );
 }

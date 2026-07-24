@@ -14,7 +14,8 @@ body {
   @apply bg-cloud font-sans text-ink antialiased;
   min-height: 100vh;
   background-image:
-    radial-gradient(circle at top left, rgba(191, 232, 230, 0.5), transparent 24rem),
+    radial-gradient(circle at top left, rgba(191, 232, 230, 0.3), transparent 28rem),
+    radial-gradient(circle at bottom right, rgba(45, 140, 255, 0.08), transparent 32rem),
     linear-gradient(180deg, #ffffff 0%, #f5f7fb 36%, #f5f7fb 100%);
 }
 
@@ -42,7 +43,7 @@ body::before {
 
 @layer components {
   .surface {
-    @apply rounded-xl2 border border-line bg-white shadow-soft transition-all duration-300;
+    @apply rounded-xl2 border border-line bg-white shadow-soft transition-all duration-300 hover:shadow-lift;
   }
 
   .glass {
@@ -50,23 +51,23 @@ body::before {
   }
 
   .bento {
-    @apply surface hover:shadow-lift hover:-translate-y-1;
+    @apply surface hover:shadow-lift hover:-translate-y-1 hover:border-blue/30;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 active:scale-95;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 active:scale-95 hover:scale-105;
   }
 
   .btn-primary {
-    @apply btn bg-blue text-white hover:bg-midnight shadow-md shadow-blue/20 hover:shadow-lg hover:shadow-midnight/20;
+    @apply btn bg-blue text-white hover:bg-signal shadow-lg shadow-blue/30 hover:shadow-xl hover:shadow-signal/30 font-bold;
   }
 
   .btn-accent {
-    @apply btn bg-midnight text-white hover:bg-blue shadow-md shadow-midnight/10;
+    @apply btn bg-midnight text-white hover:bg-blue shadow-md shadow-midnight/20 font-bold;
   }
 
   .btn-ghost {
-    @apply btn border border-line bg-white/50 text-midnight backdrop-blur-sm hover:border-blue hover:text-blue hover:bg-white;
+    @apply btn border-2 border-blue bg-white/40 text-midnight backdrop-blur-sm hover:border-signal hover:text-signal hover:bg-white/80 font-semibold;
   }
 
   .btn-link {
@@ -83,11 +84,11 @@ body::before {
   }
 
   .eyebrow {
-    @apply text-[10px] font-extrabold uppercase tracking-[0.3em] text-blue bg-blue/5 px-3 py-1 rounded-full border border-blue/10;
+    @apply text-[10px] font-extrabold uppercase tracking-[0.3em] text-signal bg-signal/10 px-4 py-2 rounded-full border border-signal/30 shadow-sm shadow-signal/20;
   }
 
   .chip {
-    @apply inline-flex items-center rounded-full border border-blue/10 bg-blue/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-blue;
+    @apply inline-flex items-center rounded-full border border-signal/30 bg-signal/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-signal shadow-sm shadow-signal/10;
   }
 
   .container-page {
@@ -99,7 +100,7 @@ body::before {
   }
 
   .soft-band {
-    @apply rounded-[2.5rem] border border-line bg-white/60 shadow-soft backdrop-blur-sm;
+    @apply rounded-[2.5rem] border border-line/40 bg-gradient-to-br from-white/80 to-white/40 shadow-soft backdrop-blur-md hover:shadow-lift transition-all duration-300;
   }
 
   .n-fragment {
