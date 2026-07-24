@@ -43,8 +43,8 @@ export default function HomePage() {
               {HERO.title.split(" ").slice(0, -3).join(" ")} <br/>
               <span className="text-blue">{HERO.title.split(" ").slice(-3).join(" ")}</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate/75 md:text-xl font-semibold">
-              {HERO.subtitle}
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate/70 md:text-lg font-medium">
+              Replace manual work with smarter systems. Free your teams to focus on growth.
             </p>
             <div className="mt-8 flex flex-col gap-5 sm:flex-row">
               <Link href={HERO.primaryCta.href} className="btn-primary px-10 py-5 text-base">
@@ -177,36 +177,33 @@ export default function HomePage() {
       <Section className="py-12 md:py-16">
         <div className="soft-band p-10 md:p-20 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue via-signal to-blue opacity-20" />
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
             <div>
               <SectionHeading
-                eyebrow="Practical Logistics"
-                title="A simple process with clear outcomes."
-                intro="The delivery logic follows the same thinking in our design: precise, calm, structured, and practical."
+                eyebrow="Practical Delivery"
+                title="Simple, structured execution"
+                intro="Clear steps from discovery to live systems."
               />
-            </div>
-            <div className="grid gap-6">
-              <div className="relative h-48 w-full mb-8">
-                <Image
-                  src="/images/process-flow-illustration.png"
-                  alt="Process flow visualization"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="grid gap-6">
+              <div className="mt-10 grid gap-4">
                 {PROCESS.map((step, index) => (
-                  <div key={step.step} className="group grid gap-6 rounded-3xl border border-line/20 bg-gradient-to-r from-white/60 to-white/20 p-6 md:grid-cols-[auto_1fr] md:items-center hover:from-white hover:to-white/60 hover:shadow-soft hover:border-blue/30 transition-all">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-midnight to-blue text-xs font-black text-white group-hover:shadow-lg group-hover:scale-110 transition-all">
+                  <div key={step.step} className="group flex gap-4 rounded-2xl border border-line/20 bg-gradient-to-r from-white/60 to-white/20 px-6 py-4 hover:from-white hover:to-white/60 hover:shadow-soft hover:border-blue/30 transition-all">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-midnight to-blue text-xs font-black text-white">
                       0{index + 1}
                     </span>
                     <div>
-                      <p className="text-lg font-bold text-midnight group-hover:text-blue transition-colors">{step.step}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-slate/70 font-medium">{step.body}</p>
+                      <p className="font-bold text-midnight group-hover:text-blue transition-colors">{step.step}</p>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="relative h-96 w-full">
+              <Image
+                src="/images/process-flow-illustration.png"
+                alt="Process flow"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
         </div>
@@ -266,19 +263,73 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section className="py-16 md:py-20">
+        <div className="mb-12">
+          <SectionHeading
+            eyebrow="What we build"
+            title="Screen examples"
+            intro=""
+            center
+          />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="bento group overflow-hidden border border-line/30 hover:border-blue/40">
+            <div className="relative h-56 w-full bg-gradient-to-br from-cloud to-blue/5">
+              <Image
+                src="/images/dashboard-mockup.png"
+                alt="Dashboard interface"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 bg-white">
+              <h3 className="font-bold text-midnight text-base">Analytics</h3>
+              <p className="mt-1 text-xs text-slate/60 uppercase tracking-wide">Real-time metrics</p>
+            </div>
+          </div>
+          <div className="bento group overflow-hidden border border-line/30 hover:border-signal/40">
+            <div className="relative h-56 w-full bg-gradient-to-br from-cloud to-signal/5">
+              <Image
+                src="/images/approval-workflow.png"
+                alt="Approval workflow"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 bg-white">
+              <h3 className="font-bold text-midnight text-base">Approvals</h3>
+              <p className="mt-1 text-xs text-slate/60 uppercase tracking-wide">Clear decisions</p>
+            </div>
+          </div>
+          <div className="bento group overflow-hidden border border-line/30 hover:border-teal/40">
+            <div className="relative h-56 w-full bg-gradient-to-br from-cloud to-teal/5">
+              <Image
+                src="/images/inventory-system.png"
+                alt="Inventory management"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 bg-white">
+              <h3 className="font-bold text-midnight text-base">Inventory</h3>
+              <p className="mt-1 text-xs text-slate/60 uppercase tracking-wide">Stock control</p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <Section className="py-12 md:py-16">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div>
             <SectionHeading
-              eyebrow="Who we help"
-              title="Built for teams that want better execution."
-              intro="From SMEs to corporate departments, the focus stays the same: less manual friction, more visibility, and stronger systems."
+              eyebrow="Built for businesses like"
+              title="Your industry"
+              intro="Less friction. Better systems."
             />
-            <div className="mt-12 grid gap-6">
+            <div className="mt-12 grid gap-5">
               {AUDIENCES.map((audience) => (
-                <article key={audience.title} className="bento p-8 bg-gradient-to-r from-white/70 to-white/40 hover:from-white hover:to-white/80 border-blue/10 group">
-                  <h3 className="text-lg font-bold text-midnight group-hover:text-blue transition-colors uppercase tracking-wider">{audience.title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-slate/75 font-medium">{audience.body}</p>
+                <article key={audience.title} className="bento p-6 bg-gradient-to-r from-white/70 to-white/40 hover:from-white hover:to-white/80 border-blue/10 group">
+                  <h3 className="text-base font-bold text-midnight group-hover:text-blue transition-colors">{audience.title}</h3>
                 </article>
               ))}
             </div>
@@ -286,36 +337,10 @@ export default function HomePage() {
           <div className="relative h-96 w-full">
             <Image
               src="/images/system-integration.png"
-              alt="System integration illustration"
+              alt="System integration"
               fill
               className="object-contain"
             />
-          </div>
-
-          <div className="sticky top-28">
-            <SectionHeading
-              eyebrow="Starting offers"
-              title="Start with a clear engagement."
-              intro="Choose the entry point that matches the problem you need to solve next."
-            />
-            <div className="mt-12 space-y-6">
-              {OFFERS.map((offer) => (
-                <article key={offer.title} className="bento p-8 bg-gradient-to-r from-white to-cloud/20 border-line/30 hover:from-blue/5 hover:to-cloud/40 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-signal to-blue opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                    <h3 className="text-xl font-bold text-midnight group-hover:text-blue transition-colors">{offer.title}</h3>
-                    <span className="chip bg-signal/15 border-signal/40 text-signal font-bold">
-                      {offer.price}
-                    </span>
-                  </div>
-                  <p className="text-[15px] leading-relaxed text-slate/75 font-medium mb-8">{offer.body}</p>
-                  <Link href={offer.href} className="btn-link font-bold">
-                    {offer.cta}
-                    <span className="group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
-                  </Link>
-                </article>
-              ))}
-            </div>
           </div>
         </div>
       </Section>
