@@ -18,10 +18,11 @@ export function buildMetadata({
   path,
   ogTitle,
   ogDescription,
+  ogImage,
   twitterCard = "summary_large_image",
-}: PageMetadataInput): Metadata {
+}: PageMetadataInput & { ogImage?: string }): Metadata {
   const url = new URL(path, SITE.siteUrl).toString();
-  const image = new URL(SITE.ogImagePath, SITE.siteUrl).toString();
+  const image = new URL(ogImage ?? SITE.ogImagePath, SITE.siteUrl).toString();
 
   return {
     title,
@@ -50,3 +51,74 @@ export function buildMetadata({
     },
   };
 }
+
+export function buildFAQJsonLd(faqs: readonly { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function buildCourseJsonLd(course: {
+  id: string;
+  title: string;
+  summary: string;
+  priceNgn: number;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: course.summary,
+    provider: {
+      "@type": "Organization",
+      name: SITE.company,
+      sameAs: SITE.siteUrl,
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        category: "Paid",
+        price: course.priceNgn,
+        priceCurrency: "NGN",
+      },
+    ],
+  };
+}
+
+export function buildSoftwareAppJsonLd(solution: {
+  title: string;
+  description: string;
+  features: readonly string[];
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: solution.title,
+    description: solution.description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "NGN",
+      availability: "https://schema.org/InStock",
+    },
+    featureList: solution.features.join(", "),
+    url: `${SITE.siteUrl}${solution.path}`,
+    provider: {
+      "@type": "Organization",
+      name: SITE.company,
+      url: SITE.siteUrl,
+    },
+  };
+}
+
