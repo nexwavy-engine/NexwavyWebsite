@@ -171,14 +171,15 @@ function Hero() {
         {/* Full-width hero image with workflow overlay */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}
-          className="relative w-full overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-2xl shadow-[#071626]/12"
-          style={{ height: 400 }}
+          className="relative h-[clamp(360px,52vw,620px)] w-full overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-2xl shadow-[#071626]/12"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1400&q=85&auto=format&fit=crop"
-            alt="African business team collaborating on digital systems"
+            src="/images/hero-automation.png"
+            alt="Nexwavy business automation dashboard"
             className="h-full w-full object-cover object-center"
+            loading="eager"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071626]/70 via-[#071626]/15 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
@@ -254,15 +255,15 @@ function Challenges() {
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl mb-10"
-          style={{ height: 320 }}
+          className="mb-10 h-[clamp(260px,38vw,480px)] w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=85&auto=format&fit=crop"
-            alt="Business team reviewing operational data"
+            src="/images/sales-inventory.png"
+            alt="Nexwavy operational reporting and sales dashboard"
             className="h-full w-full object-cover object-center opacity-75"
-            loading="lazy"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
 
@@ -310,21 +311,21 @@ function Services() {
       icon: Zap, title: "Business Automation & Productivity Systems",
       desc: "We design and build usable systems for request tracking, approvals, attendance, field reporting, customer intake, dashboards, and simple internal portals.",
       bullets: ["Request tracking & approvals", "Attendance & field reporting", "Operational dashboards", "Simple internal portals"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=85&auto=format&fit=crop",
+      image: "/images/hero-automation.png",
       cta: "Explore Services", color: "#3069B0",
     },
     {
       icon: BrainCircuit, title: "AI Productivity Training",
       desc: "We help professionals and teams use AI for writing, research, reporting, planning, spreadsheet support, and better day-to-day execution.",
       bullets: ["Clear prompting techniques", "Daily AI use cases at work", "Document & email support", "Data safety & usage rules"],
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=85&auto=format&fit=crop",
+      image: "/images/ai-masterclass.png",
       cta: "View Training", color: "#1E90FF",
     },
     {
       icon: Lightbulb, title: "IT Advisory & Process Review",
       desc: "We help business owners and teams understand what to fix, what to automate, and whether the best answer is a tool, a workflow change, or both.",
       bullets: ["Workflow & process review", "Automation readiness audit", "Build vs. buy decisions", "Implementation planning"],
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=85&auto=format&fit=crop",
+      image: "/images/staff-attendance.png",
       cta: "Start a Project", color: "#3069B0",
     },
   ];
@@ -352,9 +353,9 @@ function Services() {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group flex flex-col overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl hover:shadow-[#071626]/10 transition-all">
-              <div className="relative overflow-hidden" style={{ height: 200 }}>
+              <div className="relative h-64 overflow-hidden sm:h-72 lg:h-80">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={image} alt={title} loading="lazy"
+                <img src={image} alt={title} loading={i === 0 ? "eager" : "lazy"} decoding="async"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071626]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-4">
@@ -481,14 +482,14 @@ function WhyNexwavy() {
             <motion.div
               initial={{ opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-lg"
-              style={{ height: 220 }}>
+              className="h-[clamp(260px,32vw,420px)] overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=85&auto=format&fit=crop"
-                alt="Business team reviewing workflow strategy"
+                src="/images/staff-attendance.png"
+                alt="Nexwavy workflow and attendance strategy dashboard"
                 className="h-full w-full object-cover"
                 loading="lazy"
+                decoding="async"
               />
             </motion.div>
             <motion.div
@@ -645,11 +646,12 @@ function FinalCTA() {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&auto=format&fit=crop"
+          src="/images/hero-automation.png"
           alt=""
           aria-hidden="true"
           className="h-full w-full object-cover opacity-10"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#071626] via-[#071626]/95 to-[#071626]/80" />
       </div>
