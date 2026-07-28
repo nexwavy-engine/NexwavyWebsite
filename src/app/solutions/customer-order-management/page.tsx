@@ -66,12 +66,12 @@ export default function CustomerOrderManagementPage() {
             </div>
           </div>
 
-          <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden border border-line shadow-2xl">
+          <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-3xl overflow-hidden border border-line shadow-2xl bg-cloud/50">
             <Image
-              src="/images/hero-automation.png"
+              src="/images/workflow-automation.png"
               alt="Customer Order Management Portal Interface"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>

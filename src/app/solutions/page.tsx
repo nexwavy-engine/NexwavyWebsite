@@ -24,7 +24,7 @@ const SOLUTIONS_HUB = [
   {
     slug: "approval-workflow-portal",
     title: "Approval Workflow Portal",
-    image: "/images/hero-automation.png",
+    image: "/images/approval-workflow.png",
     subtitle: "Automate internal requisitions, expense sign-offs, and memo approvals.",
     target: "Growing SMEs, institutions, and corporate teams.",
     price: "From ₦750,000",
@@ -32,7 +32,7 @@ const SOLUTIONS_HUB = [
   {
     slug: "customer-order-management",
     title: "Customer & Order Management Portal",
-    image: "/images/hero-automation.png",
+    image: "/images/workflow-automation.png",
     subtitle: "Centralize customer tickets, job assignments, and order tracking.",
     target: "Service providers, agencies, and logistics companies.",
     price: "From ₦750,000",
@@ -40,7 +40,7 @@ const SOLUTIONS_HUB = [
   {
     slug: "business-dashboard-reporting",
     title: "Business Dashboard & Reporting Tool",
-    image: "/images/hero-automation.png",
+    image: "/images/reporting-dashboard.png",
     subtitle: "Consolidate spreadsheets into a live executive KPI dashboard.",
     target: "Business owners, decision makers, and managers.",
     price: "From ₦500,000",
@@ -69,12 +69,12 @@ export default function SolutionsHubPage() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {SOLUTIONS_HUB.map((solution, index) => (
             <article key={solution.slug} className="bento flex flex-col overflow-hidden p-6 hover:border-blue/40 transition-all">
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-line mb-5">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-line mb-5 bg-cloud/50">
                 <Image
                   src={solution.image}
                   alt={solution.title}
                   fill
-                  className="object-cover transition-transform hover:scale-105"
+                  className="object-cover object-top transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>

@@ -12,7 +12,7 @@
       "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
       "static/chunks/23-c61e312c20c04c5e.js",
       "static/chunks/main-app-618105907d696720.js",
-      "static/css/330a0c35d39ac908.css",
+      "static/css/92a071c20ef65aee.css",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/173-55978c70620425c5.js",
       "static/chunks/998-bf1c2a5cd0231ff4.js",
@@ -34,14 +34,13 @@
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/app/sample-solutions/page-79ff060706e05ae1.js"
     ],
-    "/ai-training/page": [
+    "/about/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
       "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
       "static/chunks/23-c61e312c20c04c5e.js",
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/ai-training/page-4088afa91161418a.js"
+      "static/chunks/app/about/page-68a0ca58893bcde0.js"
     ],
     "/admin/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -52,22 +51,14 @@
       "static/chunks/998-bf1c2a5cd0231ff4.js",
       "static/chunks/app/admin/page-b3c75f8cdb96bf1c.js"
     ],
-    "/login/page": [
+    "/ai-training/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
       "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
       "static/chunks/23-c61e312c20c04c5e.js",
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/998-bf1c2a5cd0231ff4.js",
-      "static/chunks/app/login/page-8f24d417728258dd.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/app/about/page-7544012afd2a888a.js"
+      "static/chunks/173-55978c70620425c5.js",
+      "static/chunks/app/ai-training/page-3d92de9c778f3a7d.js"
     ],
     "/contact/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -77,6 +68,15 @@
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/app/contact/page-568ec650fd37cc1d.js"
     ],
+    "/login/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/998-bf1c2a5cd0231ff4.js",
+      "static/chunks/app/login/page-8f24d417728258dd.js"
+    ],
     "/dashboard/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
       "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
@@ -85,6 +85,22 @@
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/998-bf1c2a5cd0231ff4.js",
       "static/chunks/app/dashboard/page-ecc5e6fd6f241621.js"
+    ],
+    "/refunds/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/app/refunds/page-472c6e120623680d.js"
+    ],
+    "/services/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/app/services/page-92c1ae5e9f14b68e.js"
     ],
     "/register/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -109,24 +125,7 @@
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/approval-workflow-portal/page-373f764beb148e96.js"
-    ],
-    "/solutions/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/page-a95f7a1f86cbbe7c.js"
-    ],
-    "/refunds/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/app/refunds/page-ede3de33911c5a4e.js"
+      "static/chunks/app/solutions/approval-workflow-portal/page-f8c2bab555d18e66.js"
     ],
     "/solutions/customer-order-management/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -135,24 +134,7 @@
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/customer-order-management/page-23a4ba139f573b1b.js"
-    ],
-    "/services/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/app/services/page-84b912415c130820.js"
-    ],
-    "/solutions/sales-inventory-tracker/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/sales-inventory-tracker/page-13f928b6132603bb.js"
+      "static/chunks/app/solutions/customer-order-management/page-2e8986697f5b2c7a.js"
     ],
     "/solutions/business-dashboard-reporting/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -161,15 +143,7 @@
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/business-dashboard-reporting/page-b85b9bff37c5b1c5.js"
-    ],
-    "/terms/page": [
-      "static/chunks/webpack-c1465c218e8d896c.js",
-      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
-      "static/chunks/23-c61e312c20c04c5e.js",
-      "static/chunks/main-app-618105907d696720.js",
-      "static/chunks/231-8fc8a7d4c81b58b4.js",
-      "static/chunks/app/terms/page-02605c10b185ad74.js"
+      "static/chunks/app/solutions/business-dashboard-reporting/page-4975ffafbd308532.js"
     ],
     "/solutions/staff-attendance-system/page": [
       "static/chunks/webpack-c1465c218e8d896c.js",
@@ -178,7 +152,33 @@
       "static/chunks/main-app-618105907d696720.js",
       "static/chunks/231-8fc8a7d4c81b58b4.js",
       "static/chunks/173-55978c70620425c5.js",
-      "static/chunks/app/solutions/staff-attendance-system/page-295f6754da144f3f.js"
+      "static/chunks/app/solutions/staff-attendance-system/page-b3db0b6d376fc254.js"
+    ],
+    "/solutions/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/173-55978c70620425c5.js",
+      "static/chunks/app/solutions/page-40d8a3fdc383867a.js"
+    ],
+    "/solutions/sales-inventory-tracker/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/173-55978c70620425c5.js",
+      "static/chunks/app/solutions/sales-inventory-tracker/page-cbf83c92a7e67a79.js"
+    ],
+    "/terms/page": [
+      "static/chunks/webpack-c1465c218e8d896c.js",
+      "static/chunks/fd9d1056-b6e16a5f15b47ad4.js",
+      "static/chunks/23-c61e312c20c04c5e.js",
+      "static/chunks/main-app-618105907d696720.js",
+      "static/chunks/231-8fc8a7d4c81b58b4.js",
+      "static/chunks/app/terms/page-36ad14e9437cb498.js"
     ]
   }
 }
