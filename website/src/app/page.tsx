@@ -171,15 +171,17 @@ function Hero() {
         {/* Full-width hero image with workflow overlay */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}
-          className="relative h-[clamp(360px,52vw,620px)] w-full overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-2xl shadow-[#071626]/12"
+          className="relative w-full overflow-hidden rounded-2xl border border-[#E5E7EB] shadow-2xl shadow-[#071626]/12"
+          style={{ aspectRatio: "16 / 9" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/hero-automation.png"
+            src="/images/hero-automation.png?v=2"
             alt="Nexwavy business automation dashboard"
             className="h-full w-full object-cover object-center"
             loading="eager"
             decoding="async"
+            style={{ display: "block" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071626]/70 via-[#071626]/15 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
@@ -255,15 +257,17 @@ function Challenges() {
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-10 h-[clamp(260px,38vw,480px)] w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl"
+          className="mb-10 w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl"
+          style={{ aspectRatio: "16 / 9", maxHeight: "480px" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/sales-inventory.png"
+            src="/images/sales-inventory.png?v=2"
             alt="Nexwavy operational reporting and sales dashboard"
-            className="h-full w-full object-cover object-center opacity-75"
-            loading="eager"
+            className="h-full w-full object-cover object-center opacity-90"
+            loading="lazy"
             decoding="async"
+            style={{ display: "block" }}
           />
         </motion.div>
 
@@ -353,10 +357,11 @@ function Services() {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group flex flex-col overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl hover:shadow-[#071626]/10 transition-all">
-              <div className="relative h-64 overflow-hidden sm:h-72 lg:h-80">
+              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4 / 3", minHeight: "240px" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={image} alt={title} loading={i === 0 ? "eager" : "lazy"} decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src={image + "?v=2"} alt={title} loading={i === 0 ? "eager" : "lazy"} decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ display: "block" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071626]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-4">
                   <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#3069B0] shadow-lg">
