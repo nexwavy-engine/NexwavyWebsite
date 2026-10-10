@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { parseLead } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
 import { getEmailSender, leadConfirmationEmail } from "@/lib/adapters/email";
-import { deliverLeadSubmission } from "@/lib/adapters/form-delivery";
+import { canDeliverFormEmail, deliverLeadSubmission } from "@/lib/adapters/form-delivery";
 
 export const runtime = "nodejs";
 
@@ -17,6 +17,14 @@ export async function POST(req: Request) {
   const parsed = parseLead(body);
   if (!parsed.ok || !parsed.data) {
     return NextResponse.json({ errors: parsed.errors }, { status: 422 });
+  }
+
+  if (!canDeliverFormEmail()) {
+    console.error("[leads] email delivery is not configured");
+    return NextResponse.json(
+      { message: "Online submissions are temporarily unavailable. Please email hello@nexwavy.com or contact us on WhatsApp." },
+      { status: 503 },
+    );
   }
 
   try {

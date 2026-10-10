@@ -5,6 +5,11 @@ type DeliveryStatus = { emailDelivered: boolean; sheetsDelivered: boolean };
 
 const submissionRecipients = ["femi@nexwavy.com", "Oloyede@nexwavy.com"];
 
+export function canDeliverFormEmail(env: NodeJS.ProcessEnv = process.env) {
+  const isProduction = env.VERCEL_ENV === "production" || env.NODE_ENV === "production";
+  return !isProduction || Boolean(env.RESEND_API_KEY);
+}
+
 interface LeadNotificationInput {
   name: string;
   email?: string;

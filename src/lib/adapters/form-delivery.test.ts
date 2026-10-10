@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { __resetEmail, getEmailSender, type EmailMessage } from "./email";
-import { deliverLeadSubmission, deliverRegistrationSubmission } from "./form-delivery";
+import { canDeliverFormEmail, deliverLeadSubmission, deliverRegistrationSubmission } from "./form-delivery";
 
 const env = {} as NodeJS.ProcessEnv;
 
@@ -39,5 +39,16 @@ describe("form submission notifications", () => {
       to: ["femi@nexwavy.com", "Oloyede@nexwavy.com"],
       cc: "hello@nexwavy.com",
     });
+  });
+});
+
+describe("production delivery readiness", () => {
+  it("rejects a production configuration without a real mail provider", () => {
+    expect(canDeliverFormEmail({ NODE_ENV: "test", VERCEL_ENV: "production" } as NodeJS.ProcessEnv)).toBe(false);
+    expect(canDeliverFormEmail({ NODE_ENV: "production" } as NodeJS.ProcessEnv)).toBe(false);
+  });
+
+  it("accepts production when Resend is configured", () => {
+    expect(canDeliverFormEmail({ NODE_ENV: "test", VERCEL_ENV: "production", RESEND_API_KEY: "test-key" } as NodeJS.ProcessEnv)).toBe(true);
   });
 });

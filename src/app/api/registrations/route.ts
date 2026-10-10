@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { parseRegistration } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
-import { deliverRegistrationSubmission } from "@/lib/adapters/form-delivery";
+import { canDeliverFormEmail, deliverRegistrationSubmission } from "@/lib/adapters/form-delivery";
 import { getEmailSender, registrationConfirmationEmail } from "@/lib/adapters/email";
 import { findCohort, findCourse, formatCohortLabel } from "@/lib/data/catalog";
 
@@ -25,6 +25,14 @@ export async function POST(req: Request) {
   const course = findCourse(parsed.data.courseId);
   if (!course) {
     return NextResponse.json({ errors: { courseId: "Unknown course." } }, { status: 422 });
+  }
+
+  if (!canDeliverFormEmail()) {
+    console.error("[registrations] email delivery is not configured");
+    return NextResponse.json(
+      { message: "Online registration is temporarily unavailable. Please email hello@nexwavy.com or contact us on WhatsApp." },
+      { status: 503 },
+    );
   }
   const cohort = parsed.data.cohortId ? findCohort(parsed.data.cohortId) : undefined;
 
