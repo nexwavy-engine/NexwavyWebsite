@@ -3,7 +3,8 @@
 // only this file.
 
 export interface EmailMessage {
-  to: string;
+  to: string | string[];
+  cc?: string | string[];
   subject: string;
   html: string;
   text?: string;
@@ -18,7 +19,7 @@ class MockEmailSender implements EmailSender {
   async send(msg: EmailMessage) {
     this.outbox.push(msg);
     // eslint-disable-next-line no-console
-    console.log(`[email:mock] -> ${msg.to} | ${msg.subject}`);
+    console.log(`[email:mock] -> ${msg.to} | cc: ${msg.cc || "none"} | ${msg.subject}`);
     return { id: "mock-" + Math.random().toString(36).slice(2), mocked: true };
   }
 }
@@ -36,6 +37,7 @@ class ResendSender implements EmailSender {
     const { data, error } = await resend.emails.send({
       from: this.from,
       to: msg.to,
+      cc: msg.cc,
       subject: msg.subject,
       html: msg.html,
       text: msg.text,

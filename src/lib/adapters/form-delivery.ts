@@ -3,6 +3,8 @@ import { SITE } from "@/lib/content/site";
 
 type DeliveryStatus = { emailDelivered: boolean; sheetsDelivered: boolean };
 
+const submissionRecipients = ["femi@nexwavy.com", "Oloyede@nexwavy.com"];
+
 interface LeadNotificationInput {
   name: string;
   email?: string;
@@ -57,7 +59,8 @@ export async function deliverLeadSubmission(
 ): Promise<DeliveryStatus> {
   const sender = getEmailSender(env);
   await sender.send({
-    to: SITE.email,
+    to: submissionRecipients,
+    cc: SITE.email,
     subject: `New contact enquiry: ${input.name}`,
     text: [
       textLine("Name", input.name),
@@ -114,7 +117,8 @@ export async function deliverRegistrationSubmission(
 ): Promise<DeliveryStatus> {
   const sender = getEmailSender(env);
   await sender.send({
-    to: SITE.email,
+    to: submissionRecipients,
+    cc: SITE.email,
     subject: `New training registration: ${input.fullName}`,
     text: [
       textLine("Full name", input.fullName),
