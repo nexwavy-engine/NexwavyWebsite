@@ -8,6 +8,7 @@ export interface EmailMessage {
   subject: string;
   html: string;
   text?: string;
+  idempotencyKey?: string;
 }
 
 export interface EmailSender {
@@ -32,6 +33,27 @@ class ResendSender implements EmailSender {
     this.from = from;
   }
   async send(msg: EmailMessage) {
+    if (msg.idempotencyKey) {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${this.apiKey}`,
+          "Content-Type": "application/json",
+          "Idempotency-Key": msg.idempotencyKey,
+        },
+        body: JSON.stringify({
+          from: this.from,
+          to: msg.to,
+          cc: msg.cc,
+          subject: msg.subject,
+          html: msg.html,
+          text: msg.text,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.message || `Resend returned ${response.status}`);
+      return { id: result.id as string, mocked: false };
+    }
     const { Resend } = await import("resend");
     const resend = new Resend(this.apiKey);
     const { data, error } = await resend.emails.send({

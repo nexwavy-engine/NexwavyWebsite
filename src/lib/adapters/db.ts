@@ -330,7 +330,7 @@ let singleton: Db | null = null;
 export function getDb(env: NodeJS.ProcessEnv = process.env): Db {
   if (singleton) return singleton;
   const url = env.SUPABASE_URL;
-  const key = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_ANON_KEY;
+  const key = env.SUPABASE_SERVICE_ROLE_KEY;
   singleton = url && key ? new SupabaseDb(url, key) : new MemoryDb();
   return singleton;
 }

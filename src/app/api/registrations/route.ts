@@ -3,9 +3,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { parseRegistration } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
-import { canDeliverFormEmail, deliverRegistrationSubmission } from "@/lib/adapters/form-delivery";
+import { canDeliverFormEmail } from "@/lib/adapters/form-delivery";
 import { getEmailSender, registrationConfirmationEmail } from "@/lib/adapters/email";
 import { findCohort, findCourse, formatCohortLabel } from "@/lib/data/catalog";
+import { hasDurableStorage, saveSubmission } from "@/lib/adapters/submission-store";
+import { dispatchSubmission } from "@/lib/submission-dispatch";
 
 export const runtime = "nodejs";
 
@@ -27,8 +29,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ errors: { courseId: "Unknown course." } }, { status: 422 });
   }
 
-  if (!canDeliverFormEmail()) {
-    console.error("[registrations] email delivery is not configured");
+  if (!canDeliverFormEmail() || !hasDurableStorage()) {
+    console.error("[registrations] form delivery or durable storage is not configured");
     return NextResponse.json(
       { message: "Online registration is temporarily unavailable. Please email hello@nexwavy.com or contact us on WhatsApp." },
       { status: 503 },
@@ -36,12 +38,35 @@ export async function POST(req: Request) {
   }
   const cohort = parsed.data.cohortId ? findCohort(parsed.data.cohortId) : undefined;
 
+  let submission;
+  try {
+    submission = await saveSubmission("registration", {
+      fullName: parsed.data.fullName,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      organization: parsed.data.organization,
+      roleTitle: parsed.data.roleTitle,
+      courseId: course.id,
+      courseTitle: course.title,
+      cohortId: parsed.data.cohortId,
+      cohortLabel: cohort ? formatCohortLabel(cohort) : undefined,
+      preferredFormat: cohort?.deliveryFormat ?? "online",
+      participantCount: parsed.data.participantCount,
+      message: parsed.data.message,
+    });
+  } catch (error) {
+    console.error("[registrations] durable save failed", error);
+    return NextResponse.json({ message: "Could not save your registration. Please try again." }, { status: 503 });
+  }
+
   try {
     const db = getDb();
 
     // Link to a learner account when the registrant is signed in.
     let learnerId: string | null = null;
-    const session = await getServerSession(authOptions);
+    const session = process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+      ? await getServerSession(authOptions)
+      : null;
     const authUserId = (session?.user as { id?: string } | undefined)?.id;
     if (authUserId) {
       const learner = await db.upsertLearner({
@@ -54,7 +79,7 @@ export async function POST(req: Request) {
       learnerId = learner.id;
     }
 
-    const registration = await db.createRegistration({
+    await db.createRegistration({
       learnerId,
       fullName: parsed.data.fullName,
       email: parsed.data.email ?? "",
@@ -64,42 +89,32 @@ export async function POST(req: Request) {
       cohortId: parsed.data.cohortId,
       preferredFormat: cohort?.deliveryFormat ?? "online",
     });
-    await deliverRegistrationSubmission({
-      fullName: parsed.data.fullName,
-      email: parsed.data.email,
-      phone: parsed.data.phone,
-      organization: parsed.data.organization,
-      roleTitle: parsed.data.roleTitle,
-      courseTitle: course.title,
-      cohortLabel: cohort ? formatCohortLabel(cohort) : undefined,
-      participantCount: parsed.data.participantCount,
-      message: parsed.data.message,
-    });
-
-    // Confirmation email with the payment link (mocked when no RESEND_API_KEY).
-    let emailMocked = true;
-    if (parsed.data.email) {
-      try {
-      const sender = getEmailSender();
-        const msg = registrationConfirmationEmail(registration.fullName, course.title);
-        const res = await sender.send({ ...msg, to: parsed.data.email });
-        emailMocked = res.mocked;
-      } catch (e) {
-        console.error("[registrations] confirmation email failed", e);
-      }
-    }
-
-    return NextResponse.json(
-      {
-        ok: true,
-        id: registration.id,
-        courseTitle: course.title,
-        emailMocked,
-      },
-      { status: 201 },
-    );
-  } catch (e) {
-    console.error("[registrations] create failed", e);
-    return NextResponse.json({ message: "Could not complete your registration. Please try again." }, { status: 500 });
+  } catch (error) {
+    console.error("[registrations] admin record projection failed", { id: submission.id, error });
   }
+
+  let delivery: "sent" | "pending" | "empty" = "pending";
+  try {
+    delivery = await dispatchSubmission(submission.id);
+  } catch (error) {
+    console.error("[registrations] dispatch failed; submission is saved for retry", { id: submission.id, error });
+  }
+
+  if (delivery === "sent" && parsed.data.email) {
+    try {
+      const msg = registrationConfirmationEmail(parsed.data.fullName, course.title);
+      await getEmailSender().send({
+        ...msg,
+        to: parsed.data.email,
+        idempotencyKey: `form-confirmation/${submission.id}`,
+      });
+    } catch (error) {
+      console.error("[registrations] confirmation email failed", { id: submission.id, error });
+    }
+  }
+
+  return NextResponse.json(
+    { ok: true, id: submission.id, courseTitle: course.title, deliveryStatus: delivery === "sent" ? "sent" : "pending" },
+    { status: delivery === "sent" ? 201 : 202 },
+  );
 }

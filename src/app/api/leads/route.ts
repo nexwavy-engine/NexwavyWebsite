@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { parseLead } from "@/lib/validation";
 import { getDb } from "@/lib/adapters/db";
 import { getEmailSender, leadConfirmationEmail } from "@/lib/adapters/email";
-import { canDeliverFormEmail, deliverLeadSubmission } from "@/lib/adapters/form-delivery";
+import { canDeliverFormEmail } from "@/lib/adapters/form-delivery";
+import { hasDurableStorage, saveSubmission } from "@/lib/adapters/submission-store";
+import { dispatchSubmission } from "@/lib/submission-dispatch";
 
 export const runtime = "nodejs";
 
@@ -19,17 +21,35 @@ export async function POST(req: Request) {
     return NextResponse.json({ errors: parsed.errors }, { status: 422 });
   }
 
-  if (!canDeliverFormEmail()) {
-    console.error("[leads] email delivery is not configured");
+  if (!canDeliverFormEmail() || !hasDurableStorage()) {
+    console.error("[leads] form delivery or durable storage is not configured");
     return NextResponse.json(
       { message: "Online submissions are temporarily unavailable. Please email hello@nexwavy.com or contact us on WhatsApp." },
       { status: 503 },
     );
   }
 
+  const input = {
+    name: parsed.data.name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    organization: parsed.data.organization,
+    preferredContactMethod: parsed.data.preferredContactMethod,
+    serviceInterest: parsed.data.serviceInterest,
+    message: parsed.data.message,
+    source: parsed.data.source,
+  };
+
+  let submission;
   try {
-    const db = getDb();
-    const lead = await db.createLead({
+    submission = await saveSubmission("lead", input);
+  } catch (error) {
+    console.error("[leads] durable save failed", error);
+    return NextResponse.json({ message: "Could not save your message. Please try again." }, { status: 503 });
+  }
+
+  try {
+    await getDb().createLead({
       name: parsed.data.name,
       email: parsed.data.email ?? "",
       phone: parsed.data.phone,
@@ -38,32 +58,29 @@ export async function POST(req: Request) {
       message: parsed.data.message,
       source: parsed.data.source,
     });
-
-    await deliverLeadSubmission({
-      name: lead.name,
-      email: parsed.data.email,
-      phone: lead.phone,
-      organization: lead.organization,
-      preferredContactMethod: parsed.data.preferredContactMethod,
-      serviceInterest: lead.serviceInterest,
-      message: lead.message ?? "",
-      source: lead.source,
-    });
-
-    // Fire confirmation email (mocked when no RESEND_API_KEY). Never block on it.
-    if (parsed.data.email) {
-      try {
-      const sender = getEmailSender();
-      const msg = leadConfirmationEmail(lead.name);
-        await sender.send({ ...msg, to: parsed.data.email });
-      } catch (e) {
-        console.error("[leads] confirmation email failed", e);
-      }
-    }
-
-    return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
-  } catch (e) {
-    console.error("[leads] create failed", e);
-    return NextResponse.json({ message: "Could not save your message. Please try again." }, { status: 500 });
+  } catch (error) {
+    console.error("[leads] admin record projection failed", { id: submission.id, error });
   }
+
+  let delivery: "sent" | "pending" | "empty" = "pending";
+  try {
+    delivery = await dispatchSubmission(submission.id);
+  } catch (error) {
+    console.error("[leads] dispatch failed; submission is saved for retry", { id: submission.id, error });
+  }
+
+  if (delivery === "sent" && parsed.data.email) {
+    try {
+      const sender = getEmailSender();
+      const msg = leadConfirmationEmail(parsed.data.name);
+      await sender.send({ ...msg, to: parsed.data.email, idempotencyKey: `form-confirmation/${submission.id}` });
+    } catch (error) {
+      console.error("[leads] confirmation email failed", { id: submission.id, error });
+    }
+  }
+
+  return NextResponse.json(
+    { ok: true, id: submission.id, deliveryStatus: delivery === "sent" ? "sent" : "pending" },
+    { status: delivery === "sent" ? 201 : 202 },
+  );
 }

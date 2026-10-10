@@ -10,7 +10,7 @@ export function canDeliverFormEmail(env: NodeJS.ProcessEnv = process.env) {
   return !isProduction || Boolean(env.RESEND_API_KEY);
 }
 
-interface LeadNotificationInput {
+export interface LeadNotificationInput {
   name: string;
   email?: string;
   phone?: string;
@@ -21,7 +21,7 @@ interface LeadNotificationInput {
   source?: string;
 }
 
-interface RegistrationNotificationInput {
+export interface RegistrationNotificationInput {
   fullName: string;
   email?: string;
   phone?: string;
@@ -61,9 +61,11 @@ function textLine(label: string, value?: string) {
 export async function deliverLeadSubmission(
   input: LeadNotificationInput,
   env: NodeJS.ProcessEnv = process.env,
+  submissionId?: string,
 ): Promise<DeliveryStatus> {
   const sender = getEmailSender(env);
   await sender.send({
+    idempotencyKey: submissionId ? `form-team/${submissionId}` : undefined,
     to: submissionRecipients,
     cc: SITE.email,
     subject: `New contact enquiry: ${input.name}`,
@@ -94,6 +96,7 @@ export async function deliverLeadSubmission(
   const privacyRequest = /privacy|data request|data deletion|ndpa|ndpr/i.test(input.message);
   if (privacyRequest) {
     await sender.send({
+      idempotencyKey: submissionId ? `form-privacy/${submissionId}` : undefined,
       to: SITE.privacyEmail,
       subject: `Privacy-related enquiry: ${input.name}`,
       text: input.message,
@@ -119,9 +122,11 @@ export async function deliverLeadSubmission(
 export async function deliverRegistrationSubmission(
   input: RegistrationNotificationInput,
   env: NodeJS.ProcessEnv = process.env,
+  submissionId?: string,
 ): Promise<DeliveryStatus> {
   const sender = getEmailSender(env);
   await sender.send({
+    idempotencyKey: submissionId ? `form-team/${submissionId}` : undefined,
     to: submissionRecipients,
     cc: SITE.email,
     subject: `New training registration: ${input.fullName}`,

@@ -21,7 +21,7 @@ if (hasGoogle) {
 }
 
 // Dev-only fallback. Disabled automatically in production unless explicitly allowed.
-if (!hasGoogle || process.env.ALLOW_DEV_LOGIN === "true") {
+if (process.env.NODE_ENV !== "production" && process.env.VERCEL_ENV !== "production" && !hasGoogle) {
   providers.push(
     CredentialsProvider({
       id: "dev-login",

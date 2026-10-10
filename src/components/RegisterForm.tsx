@@ -9,7 +9,6 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 interface SuccessPayload {
   courseTitle: string;
-  emailMocked: boolean;
 }
 
 export default function RegisterForm({
@@ -76,11 +75,6 @@ export default function RegisterForm({
         <p className="mt-4 text-sm text-slate">
           Selected track: <strong>{result.courseTitle}</strong>
         </p>
-        {result.emailMocked && (
-          <p className="mt-4 text-xs text-slate/70">
-            (Dev mode: confirmation email logged to the server console, not sent.)
-          </p>
-        )}
         <button className="btn-ghost mt-6" onClick={() => setStatus("idle")}>
           Submit another registration
         </button>
