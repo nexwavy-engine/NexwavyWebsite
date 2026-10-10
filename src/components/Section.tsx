@@ -45,13 +45,13 @@ export function PageHeader({
   intro?: string;
 }) {
   return (
-    <header className="container-page pt-20 md:pt-28 pb-12 md:pb-16 border-b border-line/20">
+    <header className="container-page pt-12 md:pt-16 pb-9 md:pb-12 border-b border-line/50">
       <div className="max-w-5xl">
-        {eyebrow && <span className="eyebrow mb-6 inline-block">{eyebrow}</span>}
-        <h1 className="text-balance text-5xl font-bold tracking-tight text-midnight md:text-7xl md:leading-[1.05]">
+        {eyebrow && <span className="eyebrow mb-5 inline-block">{eyebrow}</span>}
+        <h1 className="text-balance text-4xl font-bold tracking-tight text-midnight md:text-6xl md:leading-[1.08]">
           {title}
         </h1>
-        {intro && <p className="mt-8 max-w-3xl text-xl leading-relaxed text-slate/70 md:text-2xl">{intro}</p>}
+        {intro && <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate/85 md:text-xl">{intro}</p>}
       </div>
     </header>
   );

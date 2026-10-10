@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PageHeader, Section } from "@/components/Section";
+import { LegalBlock as Block, LegalPage } from "@/components/LegalPage";
 import { SITE } from "@/lib/content/site";
 import { buildMetadata } from "@/lib/seo";
 
@@ -16,10 +16,18 @@ export const metadata = buildMetadata({
 
 export default function TermsPage() {
   return (
-    <>
-      <PageHeader eyebrow="Legal" title="Terms of Use" intro="Effective date: 2 July 2026 · Last updated: 2 July 2026" />
-      <Section>
-        <div className="bento max-w-4xl p-8 md:p-10">
+    <LegalPage
+      title="Terms of Use"
+      summary="The terms that govern use of our website, training programmes, and services."
+      sections={[
+        "1. Who we are", "2. Use of the website", "3. Website information", "4. Services and enquiries",
+        "5. Training registration", "6. Pricing", "7. Refunds and cancellations", "8. Intellectual property",
+        "9. Training materials", "10. Client responsibilities", "11. Data protection", "12. Third-party links and tools",
+        "13. Limitation of liability", "14. No guarantee of outcomes", "15. Changes to these terms",
+        "16. Governing law", "17. Contact",
+      ]}
+    >
+        <div className="space-y-3 text-[15px] leading-7 text-ink/80 md:text-base md:leading-8">
           <p className="text-slate">
             These Terms of Use govern your access to and use of the Nexwavy Solutions Ltd website, including enquiries, training registration, and information about our services.
           </p>
@@ -128,16 +136,6 @@ export default function TermsPage() {
             <p>Email: {SITE.email}</p>
           </Block>
         </div>
-      </Section>
-    </>
-  );
-}
-
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="mt-8 first:mt-0">
-      <h2 className="text-xl font-semibold text-ink">{title}</h2>
-      <div className="mt-3 space-y-3 text-ink/80">{children}</div>
-    </section>
+    </LegalPage>
   );
 }

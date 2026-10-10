@@ -1,4 +1,4 @@
-import { PageHeader, Section } from "@/components/Section";
+import { LegalBlock as Block, LegalPage } from "@/components/LegalPage";
 import { SITE } from "@/lib/content/site";
 import { buildMetadata } from "@/lib/seo";
 
@@ -15,10 +15,18 @@ export const metadata = buildMetadata({
 
 export default function PrivacyPage() {
   return (
-    <>
-      <PageHeader eyebrow="Legal" title="Privacy Policy" intro="Effective date: 2 July 2026 · Last updated: 2 July 2026" />
-      <Section>
-        <div className="bento prose-content max-w-4xl p-8 md:p-10">
+    <LegalPage
+      title="Privacy Policy"
+      summary="A clear account of how we handle the information you share with Nexwavy."
+      sections={[
+        "1. Who we are", "2. Personal data we collect", "3. How we collect personal data",
+        "4. Why we use personal data", "5. Lawful basis for processing", "6. Payments",
+        "7. Analytics and cookies", "8. How we store personal data", "9. How long we keep personal data",
+        "10. Who we share personal data with", "11. International transfers", "12. Data security",
+        "13. Your data protection rights", "14. Children", "15. Updates to this policy", "16. Contact",
+      ]}
+    >
+        <div className="space-y-3 text-[15px] leading-7 text-ink/80 md:text-base md:leading-8">
           <p>
             Nexwavy Solutions Ltd (&quot;Nexwavy&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy. This Privacy Policy explains how we collect, use, store, and protect personal data when you visit our website, contact us, register for training, or make an enquiry about our services.
           </p>
@@ -163,16 +171,6 @@ export default function PrivacyPage() {
             </p>
           </Block>
         </div>
-      </Section>
-    </>
-  );
-}
-
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="mt-8 first:mt-0">
-      <h2 className="text-xl font-semibold text-ink">{title}</h2>
-      <div className="mt-3 space-y-3 text-ink/80">{children}</div>
-    </section>
+    </LegalPage>
   );
 }
