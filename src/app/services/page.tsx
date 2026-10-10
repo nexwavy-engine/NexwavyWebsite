@@ -32,7 +32,7 @@ export default function ServicesPage() {
       <Section>
         <div className="grid gap-6">
           {SERVICE_CATEGORIES.map((service) => (
-            <article key={service.id} className="bento grid gap-6 p-8 md:grid-cols-[1fr_1fr] md:p-10">
+            <article key={service.id} className="grid gap-6 border-t border-line py-8 md:grid-cols-[1fr_1fr] md:gap-12 md:py-10">
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-midnight">{service.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate">{service.summary}</p>
@@ -43,7 +43,7 @@ export default function ServicesPage() {
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-midnight">Coverage & Scope</p>
-                <ul className="mt-3 grid gap-2">
+                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {service.bullets.map((bullet) => (
                     <li key={bullet} className="rounded-xl border border-line bg-cloud/60 px-4 py-2.5 text-xs font-medium text-slate">
                       ✓ {bullet}
@@ -58,11 +58,11 @@ export default function ServicesPage() {
 
       <Section className="py-12">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
-          <div className="soft-band p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading eyebrow="Pragmatic Philosophy" title={BUILD_VS_BUY.title} intro={BUILD_VS_BUY.body} />
           </div>
 
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading eyebrow="Paid Discovery" title={DISCOVERY.title} intro={DISCOVERY.body} />
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-blue">{DISCOVERY.fee}</p>
             <div className="mt-4 grid gap-2">
@@ -81,11 +81,11 @@ export default function ServicesPage() {
       </Section>
 
       <Section>
-        <div className="bento p-8 md:p-10">
+        <div className="editorial-copy">
           <SectionHeading eyebrow="Services FAQ" title="Questions teams usually ask before we begin." />
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {SERVICE_FAQ.map((item) => (
-              <div key={item.question} className="rounded-2xl border border-line bg-cloud/55 p-5">
+              <div key={item.question} className="border-t border-line py-5">
                 <h3 className="text-sm font-bold text-midnight">{item.question}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-slate">{item.answer}</p>
               </div>

@@ -45,7 +45,7 @@ export default function CustomerOrderManagementPage() {
 
       <Section className="pt-10">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading
               eyebrow="The Customer Support Gap"
               title="Scattered customer messages cause dropped orders, unhappy clients, and lost repeat business."

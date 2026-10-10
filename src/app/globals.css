@@ -95,6 +95,26 @@ body::before {
     @apply mx-auto w-full max-w-7xl px-6 md:px-8;
   }
 
+  .page-header + section.container-page {
+    @apply pt-0;
+  }
+
+  .editorial-copy {
+    @apply border-t-2 border-blue/25 pt-6;
+  }
+
+  .editorial-copy .eyebrow {
+    @apply border-0 bg-transparent px-0 py-0 text-xs tracking-[0.18em] shadow-none;
+  }
+
+  .editorial-copy h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  .legal-article > div > p:first-child {
+    @apply text-lg font-medium leading-8 text-midnight;
+  }
+
   .section-rule {
     @apply h-px w-full bg-gradient-to-r from-transparent via-line to-transparent opacity-50;
   }

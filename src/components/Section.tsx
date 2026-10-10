@@ -8,7 +8,7 @@ export function Section({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <section className={`container-page py-16 md:py-20 ${className}`}>{children}</section>;
+  return <section className={`container-page py-12 md:py-16 ${className}`}>{children}</section>;
 }
 
 export function SectionHeading({
@@ -27,7 +27,7 @@ export function SectionHeading({
   return (
     <div className={`max-w-4xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow && <span className={`eyebrow mb-6 inline-block ${dark ? "bg-blue/20 text-blue/90 border-blue/40" : ""}`}>{eyebrow}</span>}
-      <h2 className={`text-balance text-4xl font-bold tracking-tight md:text-[3.5rem] md:leading-[1.1] ${dark ? "text-white" : "text-midnight"}`}>
+      <h2 className={`text-balance text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.12] ${dark ? "text-white" : "text-midnight"}`}>
         {title}
       </h2>
       {intro && <p className={`mt-6 max-w-3xl text-lg leading-relaxed font-medium ${dark ? "text-white/80" : "text-slate/75"}`}>{intro}</p>}
@@ -45,13 +45,15 @@ export function PageHeader({
   intro?: string;
 }) {
   return (
-    <header className="container-page pt-12 md:pt-16 pb-9 md:pb-12 border-b border-line/50">
-      <div className="max-w-5xl">
-        {eyebrow && <span className="eyebrow mb-5 inline-block">{eyebrow}</span>}
-        <h1 className="text-balance text-4xl font-bold tracking-tight text-midnight md:text-6xl md:leading-[1.08]">
-          {title}
-        </h1>
-        {intro && <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate/85 md:text-xl">{intro}</p>}
+    <header className="page-header container-page py-10 md:py-12">
+      <div className="grid gap-6 border-b border-line/80 pb-8 md:grid-cols-[minmax(0,1.4fr)_minmax(16rem,0.6fr)] md:items-end md:gap-12 md:pb-10">
+        <div>
+          {eyebrow && <span className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-blue">{eyebrow}</span>}
+          <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-midnight md:text-5xl md:leading-[1.12]">
+            {title}
+          </h1>
+        </div>
+        {intro && <p className="max-w-xl border-l-2 border-blue/30 pl-5 text-base leading-relaxed text-slate md:text-lg">{intro}</p>}
       </div>
     </header>
   );

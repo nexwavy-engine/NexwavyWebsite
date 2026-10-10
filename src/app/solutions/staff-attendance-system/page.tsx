@@ -45,7 +45,7 @@ export default function StaffAttendancePage() {
 
       <Section className="pt-10">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading
               eyebrow="The Problem We Solve"
               title="Manual attendance records lead to buddy punching, delayed reports, and lost admin hours."

@@ -45,7 +45,7 @@ export default function BusinessDashboardPage() {
 
       <Section className="pt-10">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading
               eyebrow="The Reporting Visibility Gap"
               title="Business owners operate in the dark when reports require hours of spreadsheet compilation."

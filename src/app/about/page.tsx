@@ -23,18 +23,18 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading eyebrow="What We Do" title="Nexwavy exists to help teams work with more structure and better visibility." />
             <p className="mt-5 text-base leading-relaxed text-slate">{ABOUT.whoWeAre}</p>
             <p className="mt-5 text-base leading-relaxed text-slate">{ABOUT.belief}</p>
           </div>
 
           <div className="grid gap-6">
-            <div className="bento p-8">
+            <div className="border-t border-line py-5">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue">Mission</p>
               <p className="mt-3 text-base leading-relaxed text-slate">{ABOUT.mission}</p>
             </div>
-            <div className="bento p-8">
+            <div className="border-t border-line py-5">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue">Vision</p>
               <p className="mt-3 text-base leading-relaxed text-slate">{ABOUT.vision}</p>
             </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
       </Section>
 
       <Section className="py-12">
-        <div className="bento p-8 md:p-10">
+        <div className="editorial-copy">
           <SectionHeading
             eyebrow="Our approach"
             title="We begin with the workflow, not the software."
@@ -68,7 +68,7 @@ export default function AboutPage() {
           />
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {ABOUT.approach.map((step, index) => (
-              <div key={step} className="rounded-2xl border border-line bg-cloud/60 p-5">
+              <div key={step} className="border-t border-line pt-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue">0{index + 1}</p>
                 <p className="mt-2 text-sm leading-relaxed text-slate">{step}</p>
               </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <div className="bento p-8 md:p-10">
+          <div className="editorial-copy">
             <SectionHeading
               eyebrow="Team"
               title="Led by founders who understand operations, delivery, and digital systems."

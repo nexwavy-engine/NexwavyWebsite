@@ -15,27 +15,29 @@ export function LegalPage({
   children: React.ReactNode;
 }) {
   return (
-    <div className="pb-20">
-      <header className="bg-midnight text-white">
-        <div className="container-page py-12 md:py-16">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/65">
-            <Link href="/" className="transition-colors hover:text-white">Nexwavy</Link>
+    <div className="bg-white/75 pb-16">
+      <header className="container-page pt-10 md:pt-12">
+        <div className="border-b border-line/80 pb-8 md:pb-10">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue">
+            <Link href="/" className="transition-colors hover:text-midnight">Nexwavy</Link>
             <span aria-hidden="true">/</span>
             <span>Legal</span>
           </div>
-          <h1 className="mt-5 max-w-5xl text-balance text-4xl font-bold tracking-tight text-white md:text-6xl md:leading-[1.08]">
-            {title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{summary}</p>
-          <p className="mt-7 border-t border-white/20 pt-5 text-sm text-white/70">
-            Effective 2 July 2026 <span className="mx-2 text-white/35" aria-hidden="true">|</span> Last updated 2 July 2026
+          <div className="mt-5 grid gap-5 md:grid-cols-[minmax(0,1.4fr)_minmax(16rem,0.6fr)] md:items-end md:gap-12">
+            <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-midnight md:text-5xl md:leading-[1.12]">
+              {title}
+            </h1>
+            <p className="max-w-xl border-l-2 border-blue/30 pl-5 text-base leading-relaxed text-slate md:text-lg">{summary}</p>
+          </div>
+          <p className="mt-6 text-sm text-slate">
+            Effective 2 July 2026 <span className="mx-2 text-line" aria-hidden="true">|</span> Last updated 2 July 2026
           </p>
         </div>
       </header>
 
-      <div className="container-page grid gap-8 pt-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14 lg:pt-12">
+      <div className="container-page grid gap-8 pt-7 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-12 lg:pt-10">
         <aside className="lg:sticky lg:top-24 lg:self-start" aria-label={`${title} contents`}>
-          <details className="rounded-2xl border border-line bg-white p-5 shadow-soft lg:hidden">
+          <details className="border-y border-line py-4 lg:hidden">
             <summary className="cursor-pointer font-semibold text-midnight">On this page</summary>
             <LegalNavigation sections={sections} />
           </details>
@@ -44,7 +46,7 @@ export function LegalPage({
             <LegalNavigation sections={sections} />
           </div>
         </aside>
-        <article className="min-w-0 rounded-2xl border border-line bg-white px-6 py-7 shadow-soft sm:px-9 md:py-10 lg:px-12">
+        <article className="legal-article min-w-0 max-w-4xl lg:border-l lg:border-line/70 lg:pl-10">
           {children}
         </article>
       </div>
