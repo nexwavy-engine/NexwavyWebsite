@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { PageHeader, Section, SectionHeading } from "@/components/Section";
 import TrackedLink from "@/components/TrackedLink";
+import { TrainingVisual } from "@/components/HomeVisuals";
 import { MASTERCLASS, SERVICE_FAQ } from "@/lib/content/site";
 import { COHORTS, COURSES, formatCohortLabel, formatNgn } from "@/lib/data/catalog";
 import { buildCourseJsonLd, buildFAQJsonLd, buildMetadata } from "@/lib/seo";
@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
   ogTitle: "Nexwavy AI Productivity Masterclass Nigeria",
   ogDescription:
     "Hands-on AI training for professionals, SMEs, and corporate teams. Move from AI curiosity to real capability.",
-  ogImage: "/images/ai-masterclass.png",
+  ogImage: "/images/ai-training-photo.jpg",
 });
 
 export default function AiTrainingPage() {
@@ -51,16 +51,7 @@ export default function AiTrainingPage() {
             </div>
           </div>
 
-          <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden border border-line shadow-2xl">
-            <Image
-              src="/images/ai-masterclass.png"
-              alt="Executive AI Productivity Masterclass Session"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-          </div>
+          <TrainingVisual />
         </div>
       </Section>
 

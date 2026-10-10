@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     ogTitle: "Nexwavy Solutions Ltd — Business Automation & AI Training",
     ogDescription:
       "We help growing businesses replace manual work with automation, AI enablement, and practical productivity systems.",
+    ogImage: "/images/hero-photo.jpg",
   }),
   metadataBase: new URL(SITE.siteUrl),
 };
@@ -43,7 +44,7 @@ const organizationJsonLd = {
       name: SITE.company,
       url: SITE.siteUrl,
       logo: `${SITE.siteUrl}/brand/logo.png`,
-      image: `${SITE.siteUrl}/images/hero-automation.png`,
+      image: `${SITE.siteUrl}/images/hero-photo.jpg`,
       description: "Nexwavy Solutions Ltd is a business automation, AI training, and IT advisory company in Lagos, Nigeria.",
       address: {
         "@type": "PostalAddress",

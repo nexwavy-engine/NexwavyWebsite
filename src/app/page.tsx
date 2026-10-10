@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CtaBand, Section, SectionHeading } from "@/components/Section";
+import { ChallengeVisual, HeroVisual, SolutionsVisual, TrainingVisual, WorkflowVisual } from "@/components/HomeVisuals";
 import { HIGHLIGHTS, PROCESS } from "@/lib/content/site";
 
 export default function HomePage() {
@@ -33,20 +34,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: High-Res Widescreen Hero Visual Mockup */}
+          {/* Right: Editorial operations image with an illustrative workflow */}
           <div className="lg:col-span-6 w-full">
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-midnight via-midnight/95 to-blue/20 p-2 sm:p-3 shadow-2xl">
-              <div className="relative h-full w-full overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/hero-visual.png"
-                  alt="Nexwavy Business Automation Dashboard Interface"
-                  fill
-                  className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-            </div>
+            <HeroVisual />
           </div>
         </div>
       </Section>
@@ -75,19 +65,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: Clean Visual Mockup */}
+          {/* Right: Responsive comparison illustration */}
           <div className="lg:col-span-6 w-full">
-            <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-3xl border border-line/80 bg-white p-2 shadow-xl">
-              <div className="relative h-full w-full overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/problems-visual.png"
-                  alt="Operational Bottlenecks vs Digital Workflow Cards"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
+            <ChallengeVisual />
           </div>
         </div>
       </Section>
@@ -113,19 +93,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: Mockup */}
+          {/* Right: Editorial stock image with a readable interface layer */}
           <div className="lg:col-span-6 w-full">
-            <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/20 bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
-              <div className="relative h-full w-full overflow-hidden rounded-xl">
-                <Image
-                  src="/images/solutions-visual.png"
-                  alt="Organized Automated System Pipelines"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
+            <SolutionsVisual />
           </div>
         </div>
       </Section>
@@ -198,14 +168,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* PROCESS - 4 Steps to Delivery */}
+      {/* PROCESS - Six stages from diagnosis through improvement */}
       <Section className="py-16 md:py-24 bg-gradient-to-br from-cloud/50 to-blue/5 rounded-3xl my-6 p-6 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left: Steps */}
           <div className="lg:col-span-6">
             <SectionHeading
               eyebrow="How It Works"
-              title="4 Steps to System Delivery"
+              title="6 Stages to System Delivery"
               intro="Fast, structured implementation tailored to your operating workflow."
             />
             <div className="mt-8 space-y-3">
@@ -223,19 +193,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: Mockup */}
+          {/* Right: Responsive process map */}
           <div className="lg:col-span-6 w-full">
-            <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-line bg-white p-2 shadow-xl">
-              <div className="relative h-full w-full overflow-hidden rounded-xl">
-                <Image
-                  src="/images/workflow-automation.png"
-                  alt="Workflow Automation Process"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
+            <WorkflowVisual />
           </div>
         </div>
       </Section>
@@ -279,17 +239,7 @@ export default function HomePage() {
           </div>
 
           <div className="lg:col-span-6 w-full">
-            <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/20 bg-white/5 p-2 shadow-2xl">
-              <div className="relative h-full w-full overflow-hidden rounded-xl">
-                <Image
-                  src="/images/ai-training-visual.png"
-                  alt="AI Productivity Training Visual"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
+            <TrainingVisual />
           </div>
         </div>
       </Section>
